@@ -91,7 +91,10 @@ Para alinear el contenido se utiliza `:` si lo queremos a la izquierza o a la de
 ITEM 1 | ITEM 2 | ITEM 3
 ```
 
+### SEPARACION
 
+Para realizar una linea de separación utilizamos `****`
+****
 
 
 
