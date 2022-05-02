@@ -37,9 +37,9 @@ Es una Etiqueta semantica de **HTML** que utlizamos esclusivamente para direccio
 ```
 
 ****
+### Etiquetas map y area
+#### Descripción
+<a href="https://www.youtube.com/watch?v=lQczRyrQJV8&list=PLJubkp8BnTJtgC2QRHCpvLSWPJNaQv2SI&index=7">Video</a>
 
-
-
-
-
-
+#### Recurso
+<a href="https://www.image-map.net">sacar corrdenadas imagen</a>
