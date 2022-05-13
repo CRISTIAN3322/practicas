@@ -1,0 +1,10 @@
+[value]{
+    display: block;
+    width: 90%;
+    margin-top: 20px;
+}
+
+
+[value*="cursocss.com"]{
+    background-color: yellow;
+}
