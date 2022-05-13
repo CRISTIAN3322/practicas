@@ -58,6 +58,7 @@ Los selectores es la primero parte de una regla **CSS** define que elementos **H
    ```
 3. **Selector de ID:** Selecciona todos los nombres que este en el atributo **id**, se llama con un #.
    **PD:** Los id son idetificadores unicos de cada elemento.
+
     ```html
    <!-- HTML -->
     <p id="bold">Negrilla</p>
@@ -68,24 +69,25 @@ Los selectores es la primero parte de una regla **CSS** define que elementos **H
        color: green;
    }
    ```
-4.**Selector Universal:** Selecciona todos los elemetos del HTML, se coloca al principio de la hoja de estilos se utiliza un asterisco *.
+
+4. **Selector Universal:** Selecciona todos los elemetos del HTML, se coloca al principio de la hoja de estilos se utiliza un asterisco *.
 ```css
 *{
     font-size:16px;
 }
 ```
 
-5.**Selectores Combinadores:** Son la combinación de dos o mas selectores basicos del mismo tipo. 
+5. **Selectores Combinadores:** Son la combinación de dos o mas selectores basicos del mismo tipo. 
 
-5.1.**Combinador de descendiente:** Este Combinador es representado por un espacio en blanco, combina dos selectores donde el primero debe ser el acentro del segundo selector.
+    5.1. **Combinador de descendiente:** Este Combinador es representado por un espacio en blanco, combina dos selectores donde el primero debe ser el acentro del segundo selector.
 
- 5.2.**Combinador de Hijos directos:** Este combinador es representado por un `>`, combina dos selectores donde el primero debe ser el padre directo del segundo selector.
+    5.2.**Combinador de Hijos directos:** Este combinador es representado por un `>`, combina dos selectores donde el primero debe ser el padre directo del segundo selector.
 
- 5.3.**Combinador de Hermano Adyacente:** Este combinador es representado por un `+`, combina dos selectores donde el primero debe ser el hermano adyacente.
+    5.3.**Combinador de Hermano Adyacente:** Este combinador es representado por un `+`, combina dos selectores donde el primero debe ser el hermano adyacente.
 
- 5.4.**Combinador de Hermanos Generales:** Este combinador es representado por una virgulilla `~` ó ALT + 126, combina dos selectores donde el segundo selector debe ser el hermano siguiente del primero selector.
+     5.4.**Combinador de Hermanos Generales:** Este combinador es representado por una virgulilla `~` ó ALT + 126, combina dos selectores donde el segundo selector debe ser el hermano siguiente del primero selector.
 
-6.**Selector de Atributo:** Selecciona un atributo y se repreneta con los []  y dentro el atributo.
+6. **Selector de Atributo:** Selecciona un atributo y se repreneta con los []  y dentro el atributo.
 
  ```css
  [value="holamundo"]{
