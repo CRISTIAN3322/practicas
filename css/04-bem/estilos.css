@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial;
+}
+
+.nav{
+    background-color: #264DE4;
+    padding: 0 100px ;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.nav__logo{
+    height: 100%;
+}
+
+.nav__link{
+    color: inherit;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.nav__link--active{
+    border-bottom: 2px solid white;
+}

@@ -121,6 +121,14 @@ El ultimo estilo declarado sera el que se tome.
 
 ![Especificidad](imagen/especificida.png)
 
+El valor `!important` rompe la especificidad pero no es recomendable porque es una mala practica, igual que los ID y los estilos en lineas.
+
+**La herencia** es la caractericas que nos permite hereda los estilos del contenedor principal a los hijos.
+
+`inherit` es el valor que fuerza la herencia del padre.
+
+## Metodología CSS: (BEM) Block Element Modifier
+
 
 
 
