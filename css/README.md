@@ -129,6 +129,40 @@ El valor `!important` rompe la especificidad pero no es recomendable porque es u
 
 ## Metodología CSS: (BEM) Block Element Modifier
 
+BEM (Block Element Modifier) es una metodología que nos proporciona una manera
+de nombrar a nuestras clases en HTML para posteriormente poder usarlo en CSS,
+BEM nos ayudará a mantener nuestro código flexible, modular y sencillo. Sobre todo
+a lidiar con problemas sobre especificidad.
+BEM significa Block Element Modifier, esto es debido a que todas las clases que
+escribiremos se regirán por estas 3 partes.
+
+### Bloque
+
+Es una parte independiente en nuestro HTML, no necesita de otros elementos para
+existir. Por ejemplo, una galería de imágenes o un menú, no necesita de otros
+elementos para existir.
+Los bloques tienen el nombre de lo que representará, ejemplo "header, menu,
+galeria, footer"
+
+### Elemento
+
+Un elemento siempre estará dentro de un bloque, debido a que es parte de él y es
+dependiente del bloque, por ejemplo una imágen necesita una galería de imagenes
+para existir, o un enlace necesita un menu para existir.
+Los elementos tendrán el nombre primero de el bloque al que pertenece, dos
+guiones bajos y despues el nombre de lo que representará ejemplo: "header__title,
+menu__item, galeria__img, footer__img"
+
+### Modificador
+
+Los modificadores son usados en elementos o bloques, se usan para representar una
+característica diferente que tendrá el modificador o elemento.
+Los modificadores tendrán el nombre del bloque o del elemento, después otra vez el
+nombre del elemento, dos guiones medios y la característica diferente que tendrá
+este bloque o elemento.
+Ejemplo: "boton—active" "header—wave".
+
+
 
 
 
