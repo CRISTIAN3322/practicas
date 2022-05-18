@@ -28,8 +28,8 @@ selector{
 .cuadrado {
     height: 10cm; // Definide el alto.
     width: 10cm; // Definide el ancho.
-    background-color: steelblue; // Define el color de fondo.
-    color: white; // Define el color de texto.
+    background-color: steelblue; // Define elcolor de fondo.
+    color: white; // Define elcolor de texto.
     border: 2px solid black; // Borde.
 }
 
@@ -144,6 +144,11 @@ elementos para existir.
 Los bloques tienen el nombre de lo que representará, ejemplo "header, menu,
 galeria, footer"
 
+```html
+    <nav class="nav">
+    </nav>
+```
+
 ### Elemento
 
 Un elemento siempre estará dentro de un bloque, debido a que es parte de él y es
@@ -153,6 +158,13 @@ Los elementos tendrán el nombre primero de el bloque al que pertenece, dos
 guiones bajos y despues el nombre de lo que representará ejemplo: "header__title,
 menu__item, galeria__img, footer__img"
 
+```html
+    <nav class="nav">
+        <img src="logo.svg" class="nav__logo">
+    </nav>   
+        
+```
+
 ### Modificador
 
 Los modificadores son usados en elementos o bloques, se usan para representar una
@@ -161,6 +173,12 @@ Los modificadores tendrán el nombre del bloque o del elemento, después otra ve
 nombre del elemento, dos guiones medios y la característica diferente que tendrá
 este bloque o elemento.
 Ejemplo: "boton—active" "header—wave".
+
+```html
+    <a href="#" class="nav__link">Inicio</a>
+    <a href="#" class="nav__link">Acerca de</a>
+    <a href="#" class="nav__link nav__link--active">Contacto</a>
+```
 
 
 
