@@ -111,6 +111,18 @@ Los selectores es la primero parte de una regla **CSS** define que elementos **H
  }
  ``` 
 
+## HERENCIA, ESPECIFICIDAD Y CASCADAD
+
+**La cascada** es una manera de determinar que selectores van aplicar los estilos en caso que haya más de un selector que cambia un mismo elemento y de un diferente estilo.
+
+El ultimo estilo declarado sera el que se tome.
+
+**La Especificidad** es el metodo primodial que define que estilos se aplicaran primero.
+
+![Especificidad](imagen/especificida.png)
+
+
+
 
 
 
