@@ -180,9 +180,58 @@ Ejemplo: "boton—active" "header—wave".
     <a href="#" class="nav__link nav__link--active">Contacto</a>
 ```
 
+## Box Model
+
+Todos los elementos debe ser tratados como cajas, rectangulos y cuadrados.
+Es la estructura que compone una caja o elmento en css que se divide en capas.
+
+![Box Model](imagen/Box%20Model%20Curso.png)
 
 
+### Propiedades Box Model
 
+1. **WIDTH:** Nos permite dar una anchura al elemento o cajas.
+1.1. ***max-width:*** Nos permite dar un ancho maximo al elemento.
+1.2. ***min-width:*** Nos permite dar un ancho minimo del elemento.
+2. **HEIGHT:** Nos permita dar una altura al elemento o cajas.
+2.1. ***max-height:*** Nos permite dar una altura maxima al elemento.
+2.1. ***min-height:*** Nos permite dar una altura minima del elemento.
+3. **PADDING:** Es una capa de relleno que separa el borde de la caja del contenido.
+   3.1. ***padding-top:*** Nos permite agregar relleno en la parte superior del elemento.
+   3.2. ***padding-right:*** Nos permite agregar relleno en la parte derecha del elemento.
+   3.3. ***padding-bottom:*** Nos permite agregar relleno en la parte inferior del elemento.
+   3.4. ***padding-left:*** Nos permite agregar relleno en la parte izquierda del elemento.
+4. **BORDER:** Es una capa que modifica el tamaño de los elementos es decir el tamño de la linea del borde de la caja.
+El borde en CSS tiene 3 caracteristica en alcho el estido y el color, y para que funcione bien debe tener dos carcteristicas fundamentales que son el ancho y el estilo del borde.
+4.1. ***border-top:*** Cambiar el borde superior.
+4.2. ***border-right:*** Cambia el borde derecho.
+4.3. ***border-bottom:*** Cambia el borde inferior.
+4.4. ***border-left:*** Cambia el borde izquierdo.
+4.5. ***border-width:*** Nos permite definir el ancho del borde y es un shorthand.
+4.5.1. ***thin:*** Es un valor de border-width que crea un linea fina casi inpersectible.
+4.5.2. ***medium:*** Es un valor de border-width que crea una linea un poco mas gruesa.
+4.5.3. ***thick:*** Es un valor de border-width que crea una linea mas gruesa.
+4.6. ***border-style:*** Define el estilo de la linea.
+4.6.1. ***solid:*** Crea una linea solida.
+4.6.2. ***dotted:*** Crea una linea punteada.
+4.6.3. ***dashed:*** Crea una linea en guiones.
+4.6.4. ***double:*** Crea una linea con lineas dobles.
+4.6.5. ***groove:*** Crea un efecto de que estamos sumerjiendo el elemento.
+4.6.6. ***ridge:*** Crea un efecto de como si estuvieramos sacandolo.
+4.7. ***border-color:*** Define el color de la linea.
+
+**Shorthand:** Los shorthand es una caracteristica que nos permite abreviar una propiedad padding o margin en una linea. 
+```css
+/* 4 Valores */
+    padding: top right bottom left;
+    margin: top right bottom left;
+/* 3 valores */
+    padding: top right/left bottom;
+    margin: top right/left bottom;
+/* 2 valores */
+    padding: top/bottom right/left;
+    margin: top/bottom right/left;
+```
 
 
 
