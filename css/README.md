@@ -203,22 +203,28 @@ Es la estructura que compone una caja o elmento en css que se divide en capas.
    3.4. ***padding-left:*** Nos permite agregar relleno en la parte izquierda del elemento.
 4. **BORDER:** Es una capa que modifica el tamaño de los elementos es decir el tamño de la linea del borde de la caja.
 El borde en CSS tiene 3 caracteristica en alcho el estido y el color, y para que funcione bien debe tener dos carcteristicas fundamentales que son el ancho y el estilo del borde.
-4.1. ***border-top:*** Cambiar el borde superior.
-4.2. ***border-right:*** Cambia el borde derecho.
-4.3. ***border-bottom:*** Cambia el borde inferior.
-4.4. ***border-left:*** Cambia el borde izquierdo.
+4.1. ***border-top:*** Cambiar el borde superior.   
+4.2. ***border-right:*** Cambia el borde derecho.     
+4.3. ***border-bottom:*** Cambia el borde inferior.        
+4.4. ***border-left:*** Cambia el borde izquierdo.         
 4.5. ***border-width:*** Nos permite definir el ancho del borde y es un shorthand.
 4.5.1. ***thin:*** Es un valor de border-width que crea un linea fina casi inpersectible.
 4.5.2. ***medium:*** Es un valor de border-width que crea una linea un poco mas gruesa.
 4.5.3. ***thick:*** Es un valor de border-width que crea una linea mas gruesa.
-4.6. ***border-style:*** Define el estilo de la linea.
-4.6.1. ***solid:*** Crea una linea solida.
-4.6.2. ***dotted:*** Crea una linea punteada.
-4.6.3. ***dashed:*** Crea una linea en guiones.
-4.6.4. ***double:*** Crea una linea con lineas dobles.
-4.6.5. ***groove:*** Crea un efecto de que estamos sumerjiendo el elemento.
+4.6. ***border-style:*** Define el estilo de la linea.          
+4.6.1. ***solid:*** Crea una linea solida.      
+4.6.2. ***dotted:*** Crea una linea punteada.       
+4.6.3. ***dashed:*** Crea una linea en guiones.     
+4.6.4. ***double:*** Crea una linea con lineas dobles.      
+4.6.5. ***groove:*** Crea un efecto de que estamos sumerjiendo el elemento.     
 4.6.6. ***ridge:*** Crea un efecto de como si estuvieramos sacandolo.
-4.7. ***border-color:*** Define el color de la linea.
+4.7. ***border-color:*** Define el color de la linea.       
+
+5. **MARGIN:** Permite establecer una sepracion en 4 direcciones entre dos o mas cajas.
+   5.1. ***margin-top:*** Define el margen superiror.
+   5.2. ***margin-right:*** Define el margen derecho.
+   5.3. ***margin-bottom:*** Define el margen inferior.
+   5.4. ***margin-left:*** Define el margen izquierdo.
 
 **Shorthand:** Los shorthand es una caracteristica que nos permite abreviar una propiedad padding o margin en una linea. 
 ```css
@@ -232,6 +238,47 @@ El borde en CSS tiene 3 caracteristica en alcho el estido y el color, y para que
     padding: top/bottom right/left;
     margin: top/bottom right/left;
 ```
+
+### Colapso de Margenes
+Los márgenes Top (en-US) y bottom de los bloques a veces están combinados (colapsados) en un solo margen cuyo tamaño es el mayor de los márgenes combinados, un comportamiento conocido como colapso de margen. Ten en cuenta que los márgenes de flotantes y elementos con posición absoluta nunca colapsan.
+
+El colapso de margen ocurre en tres casos básicos:
+
+Hermanos adjacentes
+Los márgenes de los hermanos adjacentes son colapsados (excepto cuando el último hermano necesita ser limpiado después de usar los flotantes).
+Padre y primer/último hijo
+Si no hay un borde, padding, contenido en línea, block formatting context creado, o un limpiado para separar el margin-top (en-US) de un bloque del margin-top (en-US) de su primer bloque hijo; o no hay borde, padding, contenido en línea, height, min-height, o max-height para separar el margin-bottom de un bloque del margin-bottom de su último hijo, entonces esos márgenes colapsan. El margen colapsado termina fuera del padre.
+Bloques vacíos
+Si no hay borde, padding, contenido en línea, height, o min-height para separar el margin-top (en-US) de un bloque de su margin-bottom, entonces sus márgenes superiores e inferiores colapsan.
+Cosas a tener en cuenta:
+
+Cuando estos casos están combinados ocurrirá un colapso de márgenes más complejo (de más de dos márgenes).
+Estas reglas se aplican incluso a márgenes con valor cero, así que el margen del primer/último hijo siempre termina fuera de su padre (de acuerdo a las reglas de arriba) independientemente de que el margen del padre sea o no sea cero.
+Cuando se trata de márgenes negativos, el tamaño del margen colapsado es la suma del margen positivo más grande y el margen negativo más pequeño (el más negativo).
+Cuando todos los márgenes son negativos, el tamaño del margen colapsado es el margen más pequeño (el más negativo). Esto se aplica tanto a los elementos adyacentes como a los elementos anidados.
+
+### Box-sizing
+La propiedad CSS box-sizing como el user agent (en-US) debe calcular el ancho y alto total de un elemento.
+
+Por defecto en el modelo de caja de CSS, el ancho y alto asignado a un elemento es aplicado solo al contenido de la caja del elemento. Si el elemento tiene algun borde (border) o relleno (padding), este es entonces añadido al ancho y alto a alcanzar el tamaño de la caja que es desplegada en pantalla. Esto significa que cuando se definen el ancho y alto, se tiene que ajustar el valor definido para permitir cualquier borde o relleno que se pueda añadir.
+
+La propiedad box-sizing puede ser usada para ajustar el siguiente comportamiento:
+
+***content-box:*** es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). Si se define el ancho de un elemento en 100 pixeles, la caja del contenido del elemento tendrá 100 pixeles de ancho, y el ancho de cualquier borde o relleno ser añadirá al ancho final desplegado.
+***border-box:*** le dice al navegador tomar en cuenta para cualquier valor que se especifique de borde o de relleno para el ancho o alto de un elemento. Es decir, si se define un elemento con un ancho de 100 pixeles. Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, y la caja de contenido se encogerá para absorber ese ancho extra. Esto típicamente hace mucho más fácil dimensionar elementos.
+
+### Display
+La propiedad CSS display especifica si un elemento es tratado como block or inline element y el diseño usado por sus hijos, como flow layout(Diseño de Flujo), grid(Cuadricula) o flex(Flexible). 
+
+Formalmente la propiedad display establece los tipos de visualización interna y externa de un elemento. La tipo externa establece la participacion de un elemento en flow layout; la tipo interna establece el layout(Diseño) de los hijos. Algunos valores de display estan totalmente definidos con sus especificaciones propias; por ejemplo el detalle de que pasa cuando display: flex es declarado y definido en la especificacion de Modelo Flexible de Caja(Flexible Box Model specification) de CSS. Vea la siguientes tablas para mas especificaciones individuales.
+
+Además de los Diferentes Tipos de caja de Visualizacion, el valor de none permite Desactivar la Visualizacion DE UN Elemento; cuando no se utiliza none, todos los elementos descendentes también quedan desactivados. El documento se procesa como si el elemento no existiera en el árbol de documentos.
+
+#### Valores:
+***block*** El elemento genera un cuadro de elemento de bloque.
+***inline*** El elemento genera uno o más cuadros de elemento en línea.
+
+
 
 
 
