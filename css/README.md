@@ -185,7 +185,7 @@ Ejemplo: "boton—active" "header—wave".
 Todos los elementos debe ser tratados como cajas, rectangulos y cuadrados.
 Es la estructura que compone una caja o elmento en css que se divide en capas.
 
-![Box Model](imagen/Box%20Model%20Curso.png)
+![Box Model](imagen/Box_Model_Curso.png)
 
 
 ### Propiedades Box Model
