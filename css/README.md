@@ -275,9 +275,43 @@ Formalmente la propiedad display establece los tipos de visualización interna y
 Además de los Diferentes Tipos de caja de Visualizacion, el valor de none permite Desactivar la Visualizacion DE UN Elemento; cuando no se utiliza none, todos los elementos descendentes también quedan desactivados. El documento se procesa como si el elemento no existiera en el árbol de documentos.
 
 #### Valores:
-***block*** El elemento genera un cuadro de elemento de bloque.
-***inline*** El elemento genera uno o más cuadros de elemento en línea.
+1. ***block*** El elemento genera un cuadro de elemento de bloque.
+2. ***inline*** El elemento genera uno o más cuadros de elemento en línea.
 
+### Border radius
+La propiedad border-radius de CSS3 nos permite redondear los bordes de las cajas. Se usa principalmente en el diseño de las cajas que muestran el contenido de una web y para hacer algunas figuras sencilla, como los círculos. Sin embargo, con un poco de imaginación podemos aprovecharlo para crear formas más complejas.
+
+Cómo funciona border-radius
+La propiedad border-radius es en realidad un shorthand de varias propiedades. Estas propiedades son:
+
+***border-top-left-radius:*** Esquina de arriba a la izquierda.
+***border-top-right-radius:*** Esquina de arriba a la derecha.
+***border-bottom-right-radius:*** Esquina de abajo a la derecha.
+***border-bottom-left-radius:*** Esquina de abajo a la izquierda.
+Su funcionamiento es similar al de otras propiedades (como margin, padding, etc.), solo que en lugar de aplicar el valor a un lado, se lo aplicamos a una esquina.
+
+### Box Shadow
+La propiedad CSS box-shadow  añade efectos de sombra alrededor del marco de un elemento. Se pueden definir múltiples efectos separados por comas. La caja de la sombra se describe por los desplazamientos en X e Y, los radios de desenfoque y dispersión, y el color relativos al elemento.
+
+La propiedad box-shadow permite proyectar una sombra difuminada desde el marco de casi cualquier elemento.
+
+#### Valores
+**inset**
+Si no se especifica (por defecto), la sombra asume una sombra difuminada (como si la caja fuera levantada por encima del contenido).
+La presencia de la palabra clave inset  cambia la sombra a una dentro del marco (como si el contenido estuviera deprimido dentro de la caja). Inset shadows dibuja dentro del borde (incluso de los transparentes), por encima del fondo, pero por debajo del contenido.
+`<offset-x>` `<offset-y>`
+Estos son dos valores numericos que se usan para definir el desplazamiento de la sombra. `<offset-x>` especifica la distancia horizontal. Los valores negativos colocan las combra a la izquierda de el elemento. `<offset-y>` Especifica la distancia vertical. Los valores negativos colocan la sombra por encima del elemento. Si ambos valores son 0, la sombra es ubicada detras del elemento (y puede generar un efecto de difuminación `<blur-radius>` y/o `<spread-radius>` está establecido).
+
+**blur-radius**
+Este es el tercer valor numerico. Cuando mayor sea este valor, mayor sera la difuminación, por consecuencia la sombra se vuelve más grande y ligera. Los valores negativos no son permitidos. Si esto no es especificado, su valor será 0 (el borde de la sombra es fuerte). La especificación no incluye un algoritmo exacto para como el radio de desenfoque debe ser calculado, sin embargo, explica lo siguiente:
+
+*...para una borde largo y recto de la sombra, se debería crear una transición de color con la longitud de la distancia de desenfoque que sea perpendicular a y centrada al borde de la sombra, y en estos rangos desde el color de la sombra total en el punto final del radio dentro de la sombra hasta totalmente transparente en el punto final fuera de ella.*
+
+**spread-radius**
+Este es el cuarto valor numerico. Los valores positivos harán que la sombra se expanda y crezca más, los valores negativos harán que la sombra se reduzca de tamaño. Si no se especifica, este será 0 (la sombra será del mismo tamaño del elemento).
+
+**color**
+Si no se especifica, el color depende del navegador - usualmente el valor de la propiedad color, pero notar que en Safari, actualmente pinta una sombra transparente en este caso que sea omitido.
 
 
 
