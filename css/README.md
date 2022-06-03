@@ -279,39 +279,133 @@ Además de los Diferentes Tipos de caja de Visualizacion, el valor de none permi
 2. ***inline*** El elemento genera uno o más cuadros de elemento en línea.
 
 ### Border radius
-La propiedad border-radius de CSS3 nos permite redondear los bordes de las cajas. Se usa principalmente en el diseño de las cajas que muestran el contenido de una web y para hacer algunas figuras sencilla, como los círculos. Sin embargo, con un poco de imaginación podemos aprovecharlo para crear formas más complejas.
+Es la propiedad que nos permite redondear vértices de forma independiente.
+Es un shorthand que engloba 4 propiedades:
+***border-top-left-radius ->*** Radio del borde superior izquierdo
+***border-top-right-radius ->*** Radio del borde superior derecho
+***border-bottom-right-radius ->*** Radio del borde inferior derecho
+***border-bottom-left-radius ->*** Radio del borde inferior izquierdo
 
-Cómo funciona border-radius
-La propiedad border-radius es en realidad un shorthand de varias propiedades. Estas propiedades son:
+Si sólo recibe un valor dibujará un círculo en el vértice que especifiquemos
 
-***border-top-left-radius:*** Esquina de arriba a la izquierda.
-***border-top-right-radius:*** Esquina de arriba a la derecha.
-***border-bottom-right-radius:*** Esquina de abajo a la derecha.
-***border-bottom-left-radius:*** Esquina de abajo a la izquierda.
-Su funcionamiento es similar al de otras propiedades (como margin, padding, etc.), solo que en lugar de aplicar el valor a un lado, se lo aplicamos a una esquina.
+**border-top-right-radius: 50px; ->** Círculo con 50px de radio
+
+Si recibe dos valores dibujará una elipse en el vértice que especifiquemos
+
+**border-top-right-radius: 50px 100px; ->** Elipse con 50px en el radio X y 100px en el radio Y
+
+Si utilizamos el border-radius como shorthand hay diferencias entre si queremos dar un valor a cada lado (círculo) o dos (elipse)
+
+Con un solo valor:
+***border-radius: 50px; ->*** Círculo de 50px a cada vértice
+***border-radius: 50px 100px; ->*** Círculo de 50px en el vértice superior izquierdo y en el inferior derecho y de 100px en el superior derecho y el inferior izquierdo
+***border-radius: 50px 100px 200px; ->*** Círculo de 50px en el vértice superior izquierdo, de 100px en el superior derecho y el inferior izquierdo y de 200px en el inferior derecho.
+***border-radius: 50px 100px 200px 300px; ->*** Círculo de 50px en el vértice superior izquierdo, de 100px en el superior derecho, de 200px en el inferior derecho y de 300px en el inferior izquierdo.
+
+Si le damos 2 valores separados por una barra dibujará una elipse en cada vértice con los radios que le especifiquemos.
+border radius: 50px / 100px; -> Elipse con 50px en el radio X y 100px en el radio Y
+
+Con dos valores:
+Al tener dos radios debemos agrupar los radios y separarlos por una barra.
+border-radius: 25px / 50px; -> Elipse de 25px en Y y 50px en X a cada vértice.
+
+***border-radius: 25px 50px / 50px 100px; ->*** Elipse de 25px en Y y 50px en X a los vértices superior izquierdo e inferior derecho y una elipse de 50px en Y y 100px en X en los vértices superior derecho e inferior izquierdo.
+
+***border-radius: 25px 50px 75px / 50px 100px 150px; ->***
+Elipse de 25px en Y y 50px en X al vértice superior izquierdo, una elipse de 50px en Y y 100px en X en los vértices superior derecho e inferior izquierdo y una elipse de 75px en Y y de 150px en X al vértice inferior derecho.
+
+***border-radius: 25px 50px 75px 100px / 50px 100px 150px 200px; ->*** Elipse de 25px en Y y 50px en X al vértice superior izquierdo, una elipse de 50px en Y y 100px en X en el vértice superior derecho, una elipse de 75px en Y y de 150px en X al vértice inferior derecho y una elipse de 100px en X y 200px en Y en el vértice inferior izquierdo.
 
 ### Box Shadow
-La propiedad CSS box-shadow  añade efectos de sombra alrededor del marco de un elemento. Se pueden definir múltiples efectos separados por comas. La caja de la sombra se describe por los desplazamientos en X e Y, los radios de desenfoque y dispersión, y el color relativos al elemento.
+La propiedad box-shadow se creó para añadir efectos de sombra a nuestra caja.
 
-La propiedad box-shadow permite proyectar una sombra difuminada desde el marco de casi cualquier elemento.
+En esencia lo que hace es crear un clon de la caja respetando la forma de su box-model (ancho, alto, redondez)
 
-#### Valores
-**inset**
-Si no se especifica (por defecto), la sombra asume una sombra difuminada (como si la caja fuera levantada por encima del contenido).
-La presencia de la palabra clave inset  cambia la sombra a una dentro del marco (como si el contenido estuviera deprimido dentro de la caja). Inset shadows dibuja dentro del borde (incluso de los transparentes), por encima del fondo, pero por debajo del contenido.
-`<offset-x>` `<offset-y>`
-Estos son dos valores numericos que se usan para definir el desplazamiento de la sombra. `<offset-x>` especifica la distancia horizontal. Los valores negativos colocan las combra a la izquierda de el elemento. `<offset-y>` Especifica la distancia vertical. Los valores negativos colocan la sombra por encima del elemento. Si ambos valores son 0, la sombra es ubicada detras del elemento (y puede generar un efecto de difuminación `<blur-radius>` y/o `<spread-radius>` está establecido).
+La sintaxis de box-shadow se puede escribir de distintas formas según lo que queramos conseguir.
+Los valores que le podemos poner son:
+***offset-x ->*** Desplazamiento en x (obligatorio)
+***offset-y ->*** Desplazamiento en y (obligatorio)
+***blur-radius ->*** Desenfoque de la sombra
+***spread-radius ->*** Expansión de la sombra
+***color ->*** El color de la sombra, si no lo especificamos lo heredará del elemento al que pertenece
+***inset ->*** Determina si la sombra será interior o exterior
 
-**blur-radius**
-Este es el tercer valor numerico. Cuando mayor sea este valor, mayor sera la difuminación, por consecuencia la sombra se vuelve más grande y ligera. Los valores negativos no son permitidos. Si esto no es especificado, su valor será 0 (el borde de la sombra es fuerte). La especificación no incluye un algoritmo exacto para como el radio de desenfoque debe ser calculado, sin embargo, explica lo siguiente:
+### Colores
+La mayoría las pantallas funcionan con un modo de color aditivo. La suma de RGB da como resultado un blanco
+Tenemos varias formas de dar color en CSS
 
-*...para una borde largo y recto de la sombra, se debería crear una transición de color con la longitud de la distancia de desenfoque que sea perpendicular a y centrada al borde de la sombra, y en estos rangos desde el color de la sombra total en el punto final del radio dentro de la sombra hasta totalmente transparente en el punto final fuera de ella.*
+Keywords -> Palabras clave que representan colores https://www.w3.org/wiki/CSS/Properties/color/keywords
+    
+#### IMPORTANTE:  Recordad que existe el color "transparent"
 
-**spread-radius**
-Este es el cuarto valor numerico. Los valores positivos harán que la sombra se expanda y crezca más, los valores negativos harán que la sombra se reduzca de tamaño. Si no se especifica, este será 0 (la sombra será del mismo tamaño del elemento).
+CurrentColor: Es una palabra clave que se puede usar en lugar de cualquier valor de color y usará el valor ya sea establecido o heredado en la propiedad color.
 
-**color**
-Si no se especifica, el color depende del navegador - usualmente el valor de la propiedad color, pero notar que en Safari, actualmente pinta una sombra transparente en este caso que sea omitido.
+**RGB/RGBA**
+En el modo RGB tenemos tres canales (Red, Green, Blue) y tenemos 8 bits de color por canal, (cada bit tiene dos posibles valores 0 ó 1) lo que significa que tenemos 2^8 posibles valores, que van desde 0 hasta 255.
+    
+Esto nos da un total de 255 * 255 * 255 = 16.581.375 colores.
+
+Su sintaxis es rgb(R,G,B)
+
+Si ponemos todos los canales a 0 tendremos un negro puro y si los ponemos a 255 tendremos un blanco.
+
+Para movermos por la gama de grises debemos poner los 3 canales con el mismo valor, si ponemos los 3 canales a 128 tendremos el gris puro.
+
+    
+El modo RGB nos da la opción de utilizar un cuarto canal que correspondería al canal alpha, es decir, la transparencia, y su valor va desde 0 a 1. Tenemos dos sintaxis para utilizar el canal aplha
+***rgba(R,G,B,A)***
+***rgb(R G B / A)***
+
+**Hexadecimal**
+La notación hexadecimal es la más común en desarrollo web, se basa en los mismos principios que el RGB pero escrito en notación hexadecimal.
+
+El sistema hexadecimal es un sistema basado en 16 valores del 0 al 15
+Utiliza los dígitos del 0 al 9 y las letras de la A a la F
+    
+En este tipo de notacíon también necesitamos 256 valores.
+
+Se compone de 16 caracteres en parejas ya que 16*16 = 256
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+
+Para indicar que vamos a usar notación hexadecimal debemos usar el símbolo de hash/almohadilla # y a continuación usaremos esta notación por parejas.
+`#RRGGBB`
+Cuando una pareja usa el mismo valor se puede omitir el segundo valor, siempre que se haga en las 3 parejas.
+
+rgb(255,255,255) -> #FFFFFF -> #FFF
+rgb(0,0,0) -> #000000 -> #000
+
+También tenemos la opción de usar transparencias en hexadecimal añadiendo un cuarto canal que sigue las mismas normas.
+
+rgb(0 0 0 / .5) -> #00000080 ~> #0007
+
+***HSL / HSLA***
+El modo de color HSL es el más intuitivo para los humanos. Su nombre viene de las siglas Hue (tono) Saturation (saturación) y Lightness (luminancia)
+    
+El primer valor es el ángulo en el círculo cromático donde 0 y 360 será el color rojo. Hay ciertos valores que os pueden servir como referencia para relacionar mejor los colores con sus ángulos.
+0 -> rojo
+60 -> amarillo
+120 -> verde
+180 -> cyan
+240 -> azul
+300 -> magenta
+
+El segundo valor es la saturación o intensidad del color.
+0% -> gris
+100% -> color puro
+
+El tercer valor es la luminosidad del color
+0% -> negro, nada de luz
+100% -> blanco, luz máxima
+
+#### Nota: Es importante que aunque el valor de saturación o luminancia sea 0 hay que poner 0% si no, no funcionará
+
+El modo HSL también admite transparencia y su sintaxis es la misma que la del modo RGB. Tenemos dos sintaxis disponible.
+hsla(h,s,l,a)
+hsl(h s l / a)
+En ambos casos el valor alpha va de 0 a 1
+
+Existen otros cuatro modos de color en los que está trabajando que serían CMYK (Cyan, Magenta, Yellow y Black), HWB (Hue, Whiteness, Blackness), lab(Lightness, distance a, distance b) y lch(Lightness, chroma, hue), todos están en el borrador del modulo de color de nivel 4 pero aún no es estándar.
 
 
 
