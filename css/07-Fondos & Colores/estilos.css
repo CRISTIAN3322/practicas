@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial;
+}
+
+.container{
+    margin: 50px auto;
+    width: 90%;
+    height: 500px;
+    background-image: linear-gradient(#d62eceaf, #283198a8), url('imagen.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
