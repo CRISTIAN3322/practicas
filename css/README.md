@@ -407,8 +407,116 @@ En ambos casos el valor alpha va de 0 a 1
 
 Existen otros cuatro modos de color en los que está trabajando que serían CMYK (Cyan, Magenta, Yellow y Black), HWB (Hue, Whiteness, Blackness), lab(Lightness, distance a, distance b) y lch(Lightness, chroma, hue), todos están en el borrador del modulo de color de nivel 4 pero aún no es estándar.
 
+### Fuentes e Iconos
+La tipografía es la ciencia que estudia el diseño y uso de los tipos de letra
 
+Las fuentes son tipos específicos de letra
 
+  1. Los glifos son cada uno de los dibujos que representan cada símbolo de la fuente, incluidos los espacios.
+
+  2. Los estilos de fuente son las modificaciones que se hacen a las fuentes, como el grosor o la inclinación.
+
+  3. Familia tipográfica, son las diferentes fuentes que pertenecen a una misma fuente base.
+
+  Cuando usamos una propiedad text-* estamos afectando a un bloque completo
+
+  Cuando utilizamos una propiedad font-* afectamos a la fuente del texto.
+
+  Fuentes predeterminadas, son las fuentes que se consideran seguras ya que son genéricas y no establecen una familia tipográfica, si no un estilo de fuente.
+    serif: Fuentes que tienen serifas (adornos en los caracteres)
+
+    sans-serif: Fuentes sin serifas
+
+    monospace: Fuentes que tienen el mismo espaciado entre todos sus caracteres.
+
+    cursive: Fuentes que pretenden emular escritura a mano, con ligaduras y trazos fluidos
+
+    fantasy: Fuentes que suelen ser decorativas
+
+  Fuentes desde un servidor remoto, son fuentes que se encuentran en un servidor y que nosotros descargamos para su uso, la más famosa es Google Fonts
+
+  Siempre que utilicemos fuentes no genéricas, debemos poner fuentes genéricas de fallback (respaldo)
+    
+  **Google Icons**
+    Material Icons
+       https://fonts.googleapis.com/css?family=Material+Icons
+    Material Icons Outlined
+       https://fonts.googleapis.com/css?family=Material+Icons+Outlined
+    Material Icons Two Tone
+       https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone
+    Material Icons Rounded
+       https://fonts.googleapis.com/css?family=Material+Icons+Round
+    Material Icons Sharp
+       https://fonts.googleapis.com/css?family=Material+Icons+Sharp
+      
+    Nota: Si vas a usar una gran cantidad de iconos en tu web compensa usar la librería remota
+    Si sólo usarás unos pocos es mejor descargarlos en formato svg y utilizarlos como imágenes
+
+   **Formatos para fuentes**
+      True Type Font (TTF) -> Fue el primer formato estándar.
+
+      Open True Type Font (OTF) -> Facilita o implementa la creación de las curvas.
+
+      Web Open Font Format (WOFF) (WOFF2) -> Es un formato mucho más ligero y mejora el rendimiento. Funciona a través de metadatos. WOFF tiene soporte total y WOFF2 no funciona en internet explorer.
+
+      Scalable Vector Graphics (SVG) -> Para efectos y animaciones sobre el texto, no es recomendable usarlo en el texto genérico de la web, tiene muchos problemas.
+
+      Embedded Open Type (EOT) -> Primer formato digital propuesto para sitios WEB y es comprimido. Se quedó como una propuesta pero no pasó a ser un estándar.
+
+   **Regla @font-face**
+      Esta es la forma de utilizar fuentes que tenemos descargadas y que no traemos de un servidor remoto, cuando usamos google fonts, esto es lo que está pasando por detrás.
+
+La sintaxis es:
+
+    @font-face {
+    font-family: Nombre de la familia, se lo asignamos nosotros;
+        src: aquí pondremos dos tipos de valores.
+        local() -> pondremos el nombre de la fuente para buscarla en el ordenador del usuario, de esa forma podremos evitar descargarla
+        url() -> Si no encontramos esa fuente procederemos a descargarla.
+        Existe otro valor, menos usado que es format
+        format() -> Este valor lo pasaremos de forma opcional si queremos ser más específicos con la fuente que vamos a buscar o descargar, si no lo ponemos cogerá el primer formato soportado, si lo ponemos sólo usará el que hemos establecido, y si no lo encuentra no hará nada. 
+         }```
+
+Podemos añadirle más valores como font-style, font-weight y font-display(experimental), pero esos son opcionales.
+
+**Transformaciones de texto**
+*Text-transform:* Esta propiedad nos permite hacer transformaciones ESTÉTICAS en nuestro texto.
+Admite los valores:
+
+         1. none: No se aplicará ninguna transformación.
+         2. uppercase: El texto se pondrá en mayúsculas
+         3. lowercase: El texto se pondrá en minúsculas
+         capitalize: Transforma la primera letra de cada palabra en mayúscula.
+**Adornos en el texto**
+*Text-decoration:* Esta propiedad nos permite controlar la línea que podemos poner en los textos.
+Admite los valores:
+
+         1. none: Elimina cualquier línea.
+         2. underline: Coloca una linea bajo el texto.
+         3. overline: Coloca una linea sobre el texto.
+         4. line-through: Coloca una linea tachando el texto.
+
+**Text-shadow:** Funciona exáctamente igual que box-shadow, con la única diferencia de que no admite el valor inset ni la expansión de la sombra.
+
+Los valores son:
+
+         1.offsetX: desplazamiento horizontal.
+         2. offsetY: desplazamiento vertical
+         3. blur: desenfoque.
+         4. color: color, por defecto coge el del texto.
+   
+**Espaciado en fuentes y textos**
+
+    1. letter-spacing: Establece la separación entre caracteres, se puede establecer en cualquier medida válida para CSS
+
+    2. word-spacing: Establece la separación entre palabras,
+    se puede establecer en cualquier medida válida para CSS
+
+    3. line-height: Establece el alto de cada línea, se puede dar una medida concreta o se puede poner un número que se multipliará por el font size del texto al que se lo estemos aplicando.
+
+**Orientación del texto.**
+
+   *writing-mode:* Establece la dirección del texto
 
 
 
