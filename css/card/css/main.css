@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* ! Fuente */
+    --fuente: 'Poppins', sans-serif;
+    /* ! Color fondo */
+    --primario: #003077;
+    --secundario: #2196f3;
+    --terciario: #e8f5ff;
+}
+
+body {
+    font-family: var(--fuente);
+    background: var(--primario);
+}
+
+.card {
+    width: 330px;
+    min-height: 400px;
+    background-color: var(--terciario);
+    margin: 0 auto;
+    margin-top: 70px;
+    border-radius: 10px;
+    box-shadow: 6px 6px 10px rgb(255, 255, 255, 0.25);
+    background-image: linear-gradient(180deg, #2af598 0%, #009efd 100%);
+    background-size: 100% 150px;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding: .1px;
+}
+
+.card__people {
+    background-image: url(../img/men.jpg);
+    background-size: cover;
+    background-position: center;
+    border: 7px solid var(--primario);
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    margin-top: 105px;
+    border-radius: 50%;
+}
+
+.card__name {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: var(--primario);
+}
+
+.card__media {
+    margin-top: 40px;
+    width: 100%;
+    height: 90px;
+    border-top: 1px solid var(--primario);
+    display: flex;
+    justify-content: center;
+}
+
+.card__icon {
+    width: 25%;
+    height: 100%;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position: center;
+}
+
+.card__icon--facebook {
+    background-image: url('../icons/facebook.svg');
+}
+
+.card__icon--twitter {
+    background-image: url('../icons/twitter.svg');
+}
+
+.card__icon--youtube {
+    background-image: url('../icons/youtube.svg');
+}
