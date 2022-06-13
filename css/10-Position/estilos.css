@@ -1,0 +1,48 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body{
+    min-height: 500vh;
+}
+
+.container{
+    width: 90%;
+    margin: 40px auto;
+    border: 4px solid ;
+    min-height: 500px;
+    position: relative;
+}
+
+.element{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+
+.static{
+    background-color: tomato;
+}
+
+.relative{
+    background-color: steelblue;
+    position: relative;
+    left: 30px;
+    z-index: 100;
+}
+
+.absolute{
+    position: absolute;
+    background-color: teal;
+    top: 70px;
+    left: 100px;
+    z-index: 200;
+}
+
+.fixed{
+    background-color: crimson;
+    position: fixed;
+    top: 80px;
+    z-index: 300;
+}
