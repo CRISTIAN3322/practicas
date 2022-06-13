@@ -265,6 +265,7 @@ Por defecto en el modelo de caja de CSS, el ancho y alto asignado a un elemento 
 La propiedad box-sizing puede ser usada para ajustar el siguiente comportamiento:
 
 ***content-box:*** es el comportamiento CSS por defecto para el tamaño de la caja (box-sizing). Si se define el ancho de un elemento en 100 pixeles, la caja del contenido del elemento tendrá 100 pixeles de ancho, y el ancho de cualquier borde o relleno ser añadirá al ancho final desplegado.
+
 ***border-box:*** le dice al navegador tomar en cuenta para cualquier valor que se especifique de borde o de relleno para el ancho o alto de un elemento. Es decir, si se define un elemento con un ancho de 100 pixeles. Esos 100 pixeles incluíran cualquier borde o relleno que se añadan, y la caja de contenido se encogerá para absorber ese ancho extra. Esto típicamente hace mucho más fácil dimensionar elementos.
 
 ### Display
@@ -631,9 +632,170 @@ Los posibles valores que le podemos dar a position son.
 
       z-index: Es la propiedad que nos permite ordenar los elementos superpuestos para controlar cual se coloca por delante y cual por detrás.
 
+### Stacking Context
+El stacking context o el contexto de apilamiento es el espacio donde nuestros elementos se van a ir apilando para que unos queden por detrás y otros por delante.
+
+El orden del stacking context es: (de delante a atrás):
+
+    Elementos posicionados con un z-index de 1 ó más
+    Elementos posicionados sin z-index declarado (o z-index:auto)
+    Elementos no posicionados
+    Elementos con z-index negativo
+
+### Media Queries
+Las media queries son útiles cuando deseas modificar tu página web o aplicación en función del tipo de dispositivo (como una impresora o una pantalla) o de características y parámetros específicos (como la resolución de la pantalla o el ancho del *viewport* del navegador).
+
+**Sintaxis** 
+
+Las media queries consisten de un tipo de medio opcional y una o más expresiones de características de medios. Varias consultas se pueden combinar utilizando operadores lógicos. No distinguen entre mayúsculas y minúsculas.
+
+El resultado de la consulta es "verdadero" cuando el tipo de medio (si se especifica) coincide con el dispositivo en el que se está mostrando el documento y todas las expresiones en el media query son "verdaderas". En este caso, se aplica los estilos correspondientes, siguiendo las reglas usuales de cascada.
+
+Las consultas sobre tipos de medios desconocidos son siempre falsas.
+
+```css
+
+<!-- CSS media query on a link element -->
+<link rel="stylesheet" media="(max-width: 800px)" href="example.css" />
+
+<!-- CSS media query within a style sheet -->
+<style>
+@media (max-width: 600px) {
+  .facet_sidebar {
+    display: none;
+  }
+}
+</style>
+
+``` 
+
+**Media Types**
+Los Media Types (tipos de medios) describen la categoría general de un dispositivo. Excepto cuando se utilizan los operadores lógicos not o only, el tipo de medio es opcional y será interpretada como all.
+
+*all ->* Apto para todos los dispositivos.
+*print ->* Destinado a material impreso y visualización de documentos en una pantalla en el modo de vista previa de impresión. 
+*screen ->* Destinado principalmente a las pantallas.
+*speech ->* Destinado a sintetizadores de voz.
+
+#### Operadores Lógicos
+Se pueden redactar queries utilizando operadores lógicos, incluyendo not, and, y only.
+
+Además se puede combinar múltiples queries en una lista separada por comas múltiples; si cualquiera de las queries en la lista es verdadera, la hoja de estilo asociada es aplicada. Esto es equivalente a una operación lógica "or".
+
+***and***
+El operador and es usado para colocar juntas múltiples funciones multimedia. Un query básico con el tipo de medio especificado como all puede lucir así:
+
+```css
+@media (min-width: 700px) { ... }
+```
+
+Si usted quiere aplicar ese query solo si la pantalla esta en formato horizontal, usted puede utilizar el operador and y colocar la siguiente cadena:
+
+```css
+@media (min-width: 700px) and (orientation: landscape) { ... }
+```
+
+La siguiente query solo retornara verdadero si la ventana tiene un ancho de 700px o mas y la pantalla esta en formato horizontal. Ahora si usted quiere aplicar esta opción solo si tipo de medio es TV, usted puede utilizar la siguiente cadena:
+
+```css
+@media tv and (min-width: 700px) and (orientation: landscape) { ... }
+```
+Esta query solo se aplica si el tipo de medio es TV, la ventana tiene 700px de ancho o mas y la pantalla esta en formato horizontal.
+
+#### lista separada por comas
+Las listas separadas por comas se comportan como el operador or cuando es usado en media queries. Cuando utilice una lista separada por comas y alguno de los queries retorna verdadero, el estilo o la hoja de estilos sera aplicada. Cada query en una lista separada por comas es tratado como una query individual y cualquier operador aplicado a un medio no afectara a los demás. Esto significa que cada query en una lista separada por comas puede tener como objetivo diferentes medios, tipos y estados.
+
+Si usted quiere aplicar una serie de estilos para un equipo con un ancho mínimo de 700px o si el dispositivo esta colocado en horizontal, usted puede escribir lo siguiente:
+
+```css
+@media (min-width: 700px), handheld and (orientation: landscape) { ... }
+```
+
+Por lo tanto, si esta en una `screen` con una ventana de 800px de ancho, la declaración del medio retornara verdadero debido a la primera parte de la lista, si aplicamos esto a un dispositivo `@media all and (min-width: 700px)` podría retornar verdadero a pesar del hecho de que la pantalla falle la verificación tipo de medio del `handheld` en la segunda query. Por otra parte si estuviese en un `handheld` con un ancho de ventana de 500px, la primera parte de la lista fallaría pero la segunda parte retornara verdadero debido a la declaración de medio.
+
+#### not
+El operador not aplica a todo el query y retorna verdadero si es posible y sino retorna falso (como por ejemplo monochrome en un monitor a color o una ventana con un ancho mínimo de min-width: 700px en un monitor de 600px). Un not negara un query si es posible pero no a todos los query posibles si están ubicados en una lista separada por comas. El operador not no puede ser usado para negar un query individual, solo para un query completo. Por ejemplo, el not en el siguiente query es evaluado al final:
+
+```css
+@media not all and (monochrome) { ... }
+```
+Esto significa que el query es evaluado de la siguiente forma:
+
+```css
+@media not (all and (monochrome)) { ... }
+```
+... y no de esta forma:
+```css
+@media (not all) and (monochrome) { ... }
+```
+Otro Ejemplo:
+
+```css
+@media not screen and (color), print and (color){...}
+```
+
+Es evaluado de la siguiente forma:
+
+```css
+@media (not (screen and (color))), print and (color){...}
+```
+
+#### only
+El operador only previene que navegadores antiguos que no soportan queries con funciones apliquen los estilos asignados:
+```html
+<link rel="stylesheet" media="only screen and (color)" href="Ejemplo.css" />
+```
+Los queries son insensibles a las mayúsculas o minúsculas. Media queries que contengan tipos de medios desconocidos siempre retornaran falso.
+
+***Nota:*** Los paréntesis son requeridos alrededor de las expresiones, no utilizarlos es un error.
 
 
+#### orientation
+***Valor:*** `landscape` | `portrait`
 
+Indica cuando el dispositivo esta en modo landscape (el ancho de la pantalla es mayor al alto) o modo portrait (el alto de la pantalla es mayor al ancho).
 
+*Ejemplo*
+Para aplicar una hoja de estilo solo en orientación vertical (portrait):
+```css
+@media all and (orientation: portrait) { ... }
+```
+
+#### width
+***Valor:*** `<length>`
+La función width describe el ancho de la superficie a renderizar en el dispositivo de salida (como el ancho de una ventana de un documento o el ancho de la bandeja de papel en una impresora).
+
+***Nota:*** Cuando el usuario cambia el tamaño de una ventana Firefox también cambia las hojas de estilo para utilizar la mas adecuada basándose en los valores de width y height del query.
+
+*Ejemplos*
+Si usted quiere especificar una hoja de estilo para dispositivos portátiles o pantallas con un ancho de al menos 20em, usted puede usar esta query:
+
+```css
+@media handheld and (min-width: 20em), screen and (min-width: 20em) { ... }
+```
+Esta query especifica una hoja de estilo para ser aplicada a un medio impreso con un ancho mayor a 8.5 pulgadas:
+
+```html
+<link rel="stylesheet" media="print and (min-width: 8.5in)"
+    href="http://foo.com/mystyle.css" />
+```
+
+Esta query especifica una hoja de estilo para ser utilizada cuando la ventana tiene un ancho entre 500 y 800 pixeles:
+
+```css
+@media screen and (min-width: 500px) and (max-width: 800px) { ... }
+```
+
+### Técnicas de Responsive Design
+
+Adactar nuestras páginas a cualquier dispositivo se ha vuelto imprescindible en una época de diversos dispositivos con acceso a internet, para eso tenemos 2 técnicas para adactar a dispositivos, la primera técnica se llama `mobile first` y la segunda `desktop first`.
+
+#### Desktop First
+
+La técnica desktop first se basa en maquetar primero el sitio pensando en un tamaño de escritorio, para después adaptarlo a tamaños más pequeños. (mobile).
+
+#### Mobile First
+
+La técnica mobile first se basa en maquetar primero el sitio pensando en dispositivos móvile, y posteriormente agregar medias queries para adactar a un tamaño más grade (Desktop). Esta es la mejor opción debido a que es más facil adaptar un diseño de mobile a Desktop, que de Desktop a mobile.
 
 

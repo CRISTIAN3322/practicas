@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+body{
+    background-color: tomato;
+}
+
+.img{
+    display: block;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+
+
+
+@media (min-width:800px){
+
+    body{
+        background-color: crimson;
+    }
+
+    .img{
+        width: 50%;
+        border-radius: 50%;
+    }
+
+}
+
+
