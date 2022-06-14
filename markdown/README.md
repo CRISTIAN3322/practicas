@@ -152,6 +152,8 @@ Para hacer un ancla internar en Markdown en el parentesis se conla la almuadilla
 [Varias-Palabras](#citas-en-bloque)
 
 ```
+### Contenido Markdown
+
 [Arriba](#encabezado)
 [Citas en Bloque](#citas-en-bloque)
 
@@ -206,6 +208,12 @@ Para alinear el contenido se utiliza `:` si lo queremos a la izquierza o a la de
 <!-- Despues es la informacion de la tabla -->
 ITEM 1 | ITEM 2 | ITEM 3
 ```
+### Contenido Markdown
+
+| CELDA UNO | CELDA DOS | CELDA TRES |
+| :-------: | :-------: | :--------: |
+| ITEM 1 | ITEM 2 | ITEM 3 |
+
 
 # Separación
 
