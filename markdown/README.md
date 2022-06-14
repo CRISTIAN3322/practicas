@@ -39,16 +39,31 @@ _cursiva_
 
 **negrita**
 
-~tachado~
+~~tachado~~
 
 **_cursiva y negrita_**
 
-_~cursiva y tachado~_
+_~~cursiva y tachado~~_
 
-**~negrita y tachado~**
+**~~negrita y tachado~~**
 
-**_~cursiva, negrita y tachado~_**
+**_~~cursiva, negrita y tachado~~_**
 ```
+
+### Contenido Markdown
+_cursiva_
+
+**negrita**
+
+~~tachado~~
+
+**_cursiva y negrita_**
+
+_~~cursiva y tachado~~_
+
+**~~negrita y tachado~~**
+
+**_~~cursiva, negrita y tachado~~_**
 
 # Divisiones
 En HTML se tiene la etiqueta <hr> para definir una división o ruptura semántica entre bloques de contenido. Se visualiza como una línea horizontal.
