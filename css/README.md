@@ -191,11 +191,11 @@ Es la estructura que compone una caja o elmento en css que se divide en capas.
 ### Propiedades Box Model
 
 1. **WIDTH:** Nos permite dar una anchura al elemento o cajas.
-1.1. ***max-width:*** Nos permite dar un ancho maximo al elemento.
-1.2. ***min-width:*** Nos permite dar un ancho minimo del elemento.
+    1.1. ***max-width:*** Nos permite dar un ancho maximo al elemento.
+    1.2. ***min-width:*** Nos permite dar un ancho minimo del elemento.
 2. **HEIGHT:** Nos permita dar una altura al elemento o cajas.
-2.1. ***max-height:*** Nos permite dar una altura maxima al elemento.
-2.1. ***min-height:*** Nos permite dar una altura minima del elemento.
+    2.1. ***max-height:*** Nos permite dar una altura maxima al elemento.
+    2.2. ***min-height:*** Nos permite dar una altura minima del elemento.
 3. **PADDING:** Es una capa de relleno que separa el borde de la caja del contenido.
    3.1. ***padding-top:*** Nos permite agregar relleno en la parte superior del elemento.
    3.2. ***padding-right:*** Nos permite agregar relleno en la parte derecha del elemento.
@@ -203,14 +203,14 @@ Es la estructura que compone una caja o elmento en css que se divide en capas.
    3.4. ***padding-left:*** Nos permite agregar relleno en la parte izquierda del elemento.
 4. **BORDER:** Es una capa que modifica el tamaño de los elementos es decir el tamño de la linea del borde de la caja.
 El borde en CSS tiene 3 caracteristica en alcho el estido y el color, y para que funcione bien debe tener dos carcteristicas fundamentales que son el ancho y el estilo del borde.
-4.1. ***border-top:*** Cambiar el borde superior.   
-4.2. ***border-right:*** Cambia el borde derecho.     
-4.3. ***border-bottom:*** Cambia el borde inferior.        
-4.4. ***border-left:*** Cambia el borde izquierdo.         
-4.5. ***border-width:*** Nos permite definir el ancho del borde y es un shorthand.
-4.5.1. ***thin:*** Es un valor de border-width que crea un linea fina casi inpersectible.
-4.5.2. ***medium:*** Es un valor de border-width que crea una linea un poco mas gruesa.
-4.5.3. ***thick:*** Es un valor de border-width que crea una linea mas gruesa.
+    4.1. ***border-top:*** Cambiar el borde superior.   
+    4.2. ***border-right:*** Cambia el borde derecho.     
+    4.3. ***border-bottom:*** Cambia el borde inferior.        
+    4.4. ***border-left:*** Cambia el borde izquierdo.         
+    4.5. ***border-width:*** Nos permite definir el ancho del borde y es un shorthand.
+        4.5.1. ***thin:*** Es un valor de border-width que crea un linea fina casi inpersectible.
+        4.5.2. ***medium:*** Es un valor de border-width que crea una linea un poco mas gruesa.
+        4.5.3. ***thick:*** Es un valor de border-width que crea una linea mas gruesa.
 4.6. ***border-style:*** Define el estilo de la linea.          
 4.6.1. ***solid:*** Crea una linea solida.      
 4.6.2. ***dotted:*** Crea una linea punteada.       
@@ -786,7 +786,7 @@ Esta query especifica una hoja de estilo para ser utilizada cuando la ventana ti
 @media screen and (min-width: 500px) and (max-width: 800px) { ... }
 ```
 
-### Técnicas de Responsive Design
+# Técnicas de Responsive Design
 
 Adactar nuestras páginas a cualquier dispositivo se ha vuelto imprescindible en una época de diversos dispositivos con acceso a internet, para eso tenemos 2 técnicas para adactar a dispositivos, la primera técnica se llama `mobile first` y la segunda `desktop first`.
 
@@ -798,4 +798,157 @@ La técnica desktop first se basa en maquetar primero el sitio pensando en un ta
 
 La técnica mobile first se basa en maquetar primero el sitio pensando en dispositivos móvile, y posteriormente agregar medias queries para adactar a un tamaño más grade (Desktop). Esta es la mejor opción debido a que es más facil adaptar un diseño de mobile a Desktop, que de Desktop a mobile.
 
+# Flexbox
+FFlexbox es un sistema de elementos flexibles que llega con la idea de olvidar estos mecanismos y acostumbrarnos a una mecánica más potente, limpia y personalizable, en la que los elementos HTML se adaptan y colocan automáticamente y es más fácil personalizar los diseños. Está especialmente diseñado para crear, mediante CSS, estructuras de una sóla dimensión.
+
+## Conceptos
+Para empezar a utilizar flexbox lo primero que debemos hacer es conocer algunos de los elementos básicos de este nuevo esquema, que son los siguientes:
+
+![Concepto](imagen/flexbox-como-funciona.png)
+
+- **Contenedor:** Es el elemento padre que tendrá en su interior cada uno de los ítems flexibles. Observa que al contrario que muchas otras estructuras CSS, por norma general, en Flex establecemos las propiedades al elemento padre.  
+  - Eje principal: Los contenedores flexibles tendrán una orientación principal específica. Por defecto, es en horizontal (en fila).
+  - Eje secundario: De la misma forma, los contenedores flexibles tendrán una orientación secundaria, perpendicular a la principal. Si la principal es en horizontal, la secundaria será en vertical, y viceversa. 
+- **Ítem:** Cada uno de los hijos flexibles que tendrá el contenedor en su interior.
+
+Una vez tenemos claro esto, imaginemos el siguiente escenario:
+```html
+<div class="container"> <!-- Flex container -->
+  <div class="item item-1">1</div> <!-- Flex items -->
+  <div class="item item-2">2</div>
+  <div class="item item-3">3</div>
+</div>
+```
+Para activar el modo flexbox, hemos utilizado sobre el elemento contenedor la propiedad `display` que vimos en Tipos de elementos, y especificar el valor `flex` o `inline-flex` (dependiendo de como queramos que se comporte el contenedor):
+
+1. inline-flex: Establece un contenedor en línea, similar a inline-block (ocupa solo el contenido).
+2. flex: Establece un contenedor en bloque, similar a block (ocupa todo el ancho del padre).
+
+Por defecto, y sólo con esto, observaremos que los elementos se disponen todos sobre una misma línea. Esto ocurre porque estamos utilizando el modo flexbox y estaremos trabajando con ítems flexibles básicos, garantizando que no se desbordarán ni mostrarán los problemas que, por ejemplo, tienen los porcentajes sobre elementos que no utilizan flexbox.
+
+## Dirección de los ejes 
+Existen dos propiedades principales para manipular la dirección y comportamiento de los ítems a lo largo del eje principal del contenedor. Son las siguientes:
+
+Propiedad | Valor | Significado |
+|---|---|---|
+flex-direction | row , row-reverse , column , column-reverse | Cambia la orientación del eje principal.|
+flex-wrap | nowrap , wrap , wrap-reverse | Evita o permite el desbordamiento (multilinea). |
+
+Mediante la propiedad flex-direction podemos modificar la dirección del eje principal del contenedor para que se oriente en horizontal (por defecto) o en vertical. Además, también podemos incluir el sufijo -reverse para indicar que coloque los ítems en orden inverso.
+
+1. **row:**	Establece la dirección del eje principal en horizontal.
+2. **row-reverse:**	Establece la dirección del eje principal en horizontal (invertido).
+3. **column:**	Establece la dirección del eje principal en vertical.
+4. **column-reverse:**	Establece la dirección del eje principal en vertical (invertido).
+
+Esto nos permite tener un control muy alto sobre el orden de los elementos en una página. Veamos la aplicación de estas propiedades sobre el ejemplo anterior, para modificar el flujo del eje principal del contenedor:
+
+```css
+.container {
+  background: steelblue;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  background: grey;
+}
+```
+
+Por otro lado, existe otra propiedad llamada flex-wrap con la que podemos especificar el comportamiento del contenedor respecto a evitar que se desborde (nowrap, valor por defecto) o permitir que lo haga, en cuyo caso, estaríamos hablando de un contenedor flexbox multilinea.
+
+1. **nowrap:**	Establece los ítems en una sola línea (no permite que se desborde el contenedor).
+2. **wrap:**	Establece los ítems en modo multilínea (permite que se desborde el  contenedor).
+3. **wrap-reverse:**	Establece los ítems en modo multilínea, pero en dirección inversa.
+   
+Teniendo en cuenta estos valores de la propiedad flex-wrap, podemos conseguir cosas como la siguiente:
+
+```css
+.container {
+  background: steelblue;
+  display: flex;
+  width: 200px;
+  flex-wrap: wrap;  /* Comportamiento por defecto: nowrap */
+}
+
+.item {
+  background: grey;
+  width: 50%;
+}
+```
+
+En el caso de especificar nowrap (u omitir la propiedad flex-wrap) en el contenedor, los 3 ítems se mostrarían en una misma línea del contenedor. En ese caso, cada ítem debería tener un 50% de ancho (o sea, 100px de los 200px del contenedor). Un tamaño de 100px por ítem, sumaría un total de 300px, que no cabrían en el contenedor de 200px, por lo que flexbox reajusta los ítems flexibles para que quepan todos en la misma línea, manteniendo las mismas proporciones.
+
+Sin embargo, si especificamos wrap en la propiedad flex-wrap, lo que permitimos es que el contenedor se pueda desbordar, pasando a ser un contenedor multilínea, que mostraría el ítem 1 y 2 en la primera linea (con un tamaño de 100px cada uno) y el ítem 3 en la línea siguiente, dejando un espacio libre para un posible ítem 4.
+
+## Atajo: Dirección de los ejes 
+Recuerda que existe una propiedad de atajo (short-hand) llamada flex-flow, con la que podemos resumir los valores de las propiedades flex-direction y flex-wrap, especificándolas en una sola propiedad y ahorrándonos utilizar las propiedades concretas:
+
+```css 
+.container {
+  /* flex-flow: <flex-direction> <flex-wrap>; */
+  flex-flow: row wrap;
+}
+```
+## Propiedades de alineación
+Ahora que tenemos un control básico del contenedor de estos ítems flexibles, necesitamos conocer las propiedades existentes dentro de flexbox para disponer los ítems dependiendo de nuestro objetivo. Vamos a echar un vistazo a 4 propiedades interesantes para ello, la primera de ellas actua en el eje principal, mientras que el resto en el eje secundario:
+
+| Propiedad	| Valor	| Eje |
+|---|---|---|
+| **justify-content:**	| flex-start - flex-end - center - space-between - space-around - space-evenly	| 1️⃣ |
+| **align-content:** |	flex-start - flex-end - center - space-between - space-around - space-evenly - stretch | 2️⃣ |
+| **align-items:** | flex-start - flex-end - center - stretch - baseline | 2️⃣ |
+| **align-self:** |	auto - flex-start - flex-end - center - stretch - baseline	| 2️⃣ |
+
+De esta pequeña lista, hay que centrarse en primer lugar en la primera y la tercera propiedad, que son las más importantes (las otras dos son casos particulares que explicaremos más adelante):
+
+- ***justify-content:*** Se utiliza para alinear los ítems del eje principal (por defecto, el horizontal).
+- ***align-items:*** Usada para alinear los ítems del eje secundario (por defecto, el vertical).
+
+## Sobre el eje principal 
+La primera propiedad, justify-content, sirve para colocar los ítems de un contenedor mediante una disposición concreta a lo largo del eje principal:
+
+- **flex-start:**	Agrupa los ítems al principio del eje principal.
+- **flex-end:**	Agrupa los ítems al final del eje principal.
+- **center:**	Agrupa los ítems al centro del eje principal.
+- **space-between:**	Distribuye los ítems dejando el máximo espacio para separarlos.
+- **space-around:**	Distribuye los ítems dejando el mismo espacio alrededor de ellos (izq/dcha).
+- **space-evenly:**	Distribuye los ítems dejando el mismo espacio (solapado) a izquierda y derecha.
+
+Con cada uno de estos valores, modificaremos la disposición de los ítems del contenedor donde se aplica.
+
+Una vez entendido este caso, debemos atender a la propiedad align-content, que es un caso particular del anterior. Nos servirá cuando estemos tratando con un contenedor flex multilinea, que es un contenedor en el que los ítems no caben en el ancho disponible, y por lo tanto, el eje principal se divide en múltiples líneas (por ejemplo, usando flex-wrap: wrap).
+
+De esta forma, align-content servirá para alinear cada una de las líneas del contenedor multilinea. Los valores que puede tomar son los siguientes:
+
+- ***flex-start:***	Agrupa los ítems al principio del eje principal.
+- ***flex-end:***	Agrupa los ítems al final del eje principal.
+- ***center:***	Agrupa los ítems al centro del eje principal.
+- ***space-between:***	Distribuye los ítems desde el inicio hasta el final.
+- ***space-around:***	Distribuye los ítems dejando el mismo espacio a los lados de cada uno.
+- ***stretch:***	Estira los ítems para ocupar de forma equitativa todo el espacio.
+
+Con estos valores, vemos como cambiamos la disposición en vertical (porque partimos de un ejemplo en el que estamos utilizando flex-direction: row, y el eje principal es horizontal) de los ítems que están dentro de un contenedor multilinea.
+
+En el ejemplo siguiente, veremos que al indicar un contenedor de 200 píxels de alto con ítems de 50px de alto y un flex-wrap establecido para tener contenedores multilinea, podemos utilizar la propiedad align-content para alinear los ítems de forma vertical de modo que se queden en la zona inferior del contenedor:
+
+```css
+.container {
+  background: #CCC;
+  display: flex;
+  width: 200px;
+  height: 200px;
+
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
+
+.item {
+  background: #777;
+  width: 50%;
+  height: 50px;
+}
+```
+
+![ejes](imagen/css-flexbox-poster.png)
 
