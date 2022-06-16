@@ -919,7 +919,7 @@ Con cada uno de estos valores, modificaremos la disposición de los ítems del c
 
 Una vez entendido este caso, debemos atender a la propiedad align-content, que es un caso particular del anterior. Nos servirá cuando estemos tratando con un contenedor flex multilinea, que es un contenedor en el que los ítems no caben en el ancho disponible, y por lo tanto, el eje principal se divide en múltiples líneas (por ejemplo, usando flex-wrap: wrap).
 
-De esta forma, align-content servirá para alinear cada una de las líneas del contenedor multilinea. Los valores que puede tomar son los siguientes:
+De esta forma, *align-content* servirá para alinear cada una de las líneas del contenedor multilinea. Los valores que puede tomar son los siguientes:
 
 - ***flex-start:***	Agrupa los ítems al principio del eje principal.
 - ***flex-end:***	Agrupa los ítems al final del eje principal.
@@ -951,4 +951,113 @@ En el ejemplo siguiente, veremos que al indicar un contenedor de 200 píxels de 
 ```
 
 ![ejes](imagen/css-flexbox-poster.png)
+
+# Sobre el eje secundario 
+
+La otra propiedad importatnte de este apartado es **align-items**, que se encarga de alinear los items en el eje secundario del contenedor. Hay que tener cuidado de no confundir **aling-content** con **aling-content**, puesto que el primero actúasobre una de las líneas de un contenedor multilinea (noo tiene efecto sobre contenedores de una sola línea), mientras que **align-items** lo hace sobre la linea actual.
+
+Los valores que puede tomar son los siguientes:
+
+- **flex-start:** Alinea ñps items al principio de eje secundario.
+- **flex-end.** Alinea los items al final del eje secundario.
+- **center:** Alinea los items al centro del eje secundario.
+- **stretch:** Alinea los items estiramientos de modo que cubran desde el inicio hasta el final de contenedor.
+- **baseline:** Alinear los itemas en el contenedor según la base del contenido de los items del contenedor.
+  
+por otro lado, ña propiedad **align-self** actúa exactamente igual que **align-items**, sin embargo es la primera propiedad de flexbox que vemos que se utiliza sobre un item hijo especifico y no sobre el elemento contenedor. Salvo por este detalle, funciona exactamente igual que **align-items**.
+
+Gracias a ese detalle, **align-self** nose permite cambiar el comportamiento de **align-items** y sobreescribirlo comportamiento especificos para items concretos que no queremos que se comporten igual que el resto. La propiedad puede tomar los siguiente valores:
+
+- **flex-start:** Alinea los items al principio del contenedor.
+- **flex-end:** alinea los items al centro del contenedor.
+- **stretch:** Aliena los items estirándolos al tamaño de contenedor.
+- **baseline.** alinea los items en el contenedor según la base de los items.
+- **auto.** Herenda el valor de *align-items* del padre (si no se ha definido, es *stretch*).
+
+Si se especifica el valor *auto* a la propiedad **align-self**, el navegador le adigna el valor de la pripiedad **align-items** del contenedor padre, y en caso de no existir, el valor por defecto:
+**stretch**.
+
+# Atajos: Alineaciones
+Existe una propiuedad de atajo con la que se pueden establecer los valores de *align-content* y de *justify-content* de una sola vez, denominada **place-content:**
+
+```css
+.container{
+    display: flex;
+    place-content: flex-start flex-end;
+
+    /* Equivalente a...*/
+    align-content: flex-start;
+    justify-content:flex-end;
+}
+```
+# Propiedades de hijos
+A excepciób de la propiedad **align-self**, todas las propiedades que hemos visto hasta ahora se aplican sobre el elmento **contenedor**.
+
+Las siguientes propiedades, sin embargo, se aplican sobre los items hijos. 
+Las siguientes propiedades, sin embargo, se aplican sobre los items hijos.
+
+- **flex-grow:** 0 | N : Número que indica el factir de crecimineto del item respectoa al resto.
+- **flex-shrink:** 1 | N : Número que indica el factor de crecimiento de item respecto al resto.
+- **flex-basis:** S | CONTENT : Tamaño base de los items antes de aplicar variación.
+- **order:** 0 | N : Número (peso) que indica el orden de apración de los items.
+  
+En primer lugar, tenemos los propiedad **flex-grow** para indicar el factor de crecimiento de los itemas en caso de que no tengan un ancho especifico. Por ejemplo, si con **flex-grow** indicamos un valor de **1** a toddos sus items, tendriamos el mismo tamaño cada uno de ellos.Pero si colocamos un valor de **1** a todos los elementos, salvo a uno de ellos que indicamos **2**, ese item será más grande que los anteriores. los items a los que no se especifique ningún calor, tendrán por defecto valor de **0**.
+
+En segundo lugar, tenemos la propiedad **flex-shrink** que es la opuesta a **flex-grow**. Mientras que la anterior indica un factor de crecimiento, **flex-shrink** hace justo lo contrario, aplica un factor de decremento. De esta forma, los items que tengan un valor numérico más grande, serán más pequeños, mientras que los que tengan un valor numérico más pequeño serán más grandes, justo al contrario de como funciona la propiedad **flex-grow**.
+
+Por último, tenemos la propiedad **flex-basis**, que define el tamaño por defecto ( de base) que tendrán los items antes de aplicarle la distribución de espacio. Generalmente, se aplica un tamaño (unidades, porcentajes, etc...), pero también automáticamente el tamaño al contenido de item, que es su valor por defecto.
+
+# Atjo: propiedades de hijos
+Existen una propiedad llamada **flex** que sirve de ataho para estas tres propiedades de los items hijos. funciona de la siguiente forma:
+```css
+.item{
+    /* flex: <flex-grow> <flex-shrink> <flex-basis> */
+    flex: 1 3 35%;
+}
+```
+
+# Huecos (gaps)
+Existen dos propiedades de flexbox que han surgido recientemente:
+**row-gab** y **colum-gap**. diichas propiedades, permiten establecer el tamaño de un **<<hueco>>** entre items desde el elemento padre contenedor, y sin necesidad de estar utilizando **padding** o **margin** en los elementos hijos.
+
+- **row-gap:** NORMAL | S : Espacio entre filas (sólo si flex-direction: column).
+- **column-gap:** NORMAL | S : Espacio entre columnas (sólo si flex-direction: row)-
+
+Ten en cuewnta que sólo una de las dos propiedades tendrán efecto, dependiendo de si la propiedad **flex-direction** está establecida en **column** o en **row**. Eso si, es posible usra ambas si tenemos la propiedad **flex-wrap** definida a **wrap** y, por lo tanto, disponemos de multicolumnas flexbox.
+
+# Atajos: huecos
+En el caso de que queramos utilizar una propiedad de atajo para los huecos, podemos utilizar la propiedad **gap**. Eso si, ten en cuenta que estas propiedades de huecos en flexbox, aún no tienen un soporte demasiado extendido entre navedores:
+```css
+.container{
+    /* gap: <row> <column> */
+    gap: 4px 8px;
+
+    /* 1 parámetro: usa el mismo para ambios */
+    gap: 4px;
+}
+```
+# Orden de los items
+Por último, y quizas una de las propiedades más interesantes, es **order**, que modifica y establece el orden de los items segpun una secuencia numérica.
+
+Por defecto, todos los items flex tiene  un **order: 0** implicito auque no se especifique. si indicamos un **order** con un valor numérico, irá recolocando los items segpun su npumero, colocando antes los items con número más pequeños (incluso valores negativos) y después lo items con númetos más altos.
+
+De sta forma podemos recolocar fácilmente los items incluso utilizado medias queris o responsive design.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
