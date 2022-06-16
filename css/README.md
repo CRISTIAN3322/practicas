@@ -1007,7 +1007,7 @@ En segundo lugar, tenemos la propiedad **flex-shrink** que es la opuesta a **fle
 
 Por último, tenemos la propiedad **flex-basis**, que define el tamaño por defecto ( de base) que tendrán los items antes de aplicarle la distribución de espacio. Generalmente, se aplica un tamaño (unidades, porcentajes, etc...), pero también automáticamente el tamaño al contenido de item, que es su valor por defecto.
 
-# Atjo: propiedades de hijos
+# Atajo: propiedades de hijos
 Existen una propiedad llamada **flex** que sirve de ataho para estas tres propiedades de los items hijos. funciona de la siguiente forma:
 ```css
 .item{
