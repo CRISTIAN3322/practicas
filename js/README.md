@@ -180,3 +180,51 @@ un *Operador de asignación+ asigna un *valor* al operando de la inzquierda basa
 
 Los *Operadores Aritméticos* toman valores numéricos (ya sena literales o variables) como su operandos y retornan un valor numérico *único*.
 
+- Addition (+)
+- Decrement (-)
+- Division (/)
+- Exponentiation (**)
+- Increment (++)
+- Multiplication (*)
+- Remainder (%)
+- Subtration (-)
+- Unary negation (*)
+- Unary plus (+)
+
+## Concatenación 
+
+Es unir dos o más cadenas de texto.
+
+- con el signo +
+- Para numeros forzados string ("" + 9 + 4)
+- texto.concat() -> Es un metodo de cadena que requiere un string.
+- Con backticks \` y la variable entre `${}`
+
+### Backticks (Bloquote o Acento Grave) y Escape
+```javascript
+/* 
+Sin backticks: "linea 1 ' n 'linea2" 
+Con backticks: `linea1` 'escape de backticks con comillas simples' `linea2`
+*/ 
+```
+
+## Operadores (intermedio)
+**Operadores comparación:** Los *operadores de compración* comparan dos expresiones y devuelven un valor *Boolean* que representen la *relación* de sus valores (true o false).
+
+- **Igual (==) :** Devuelve true si los operandos son iguales.
+- **No es igual (!=) :** Devuelve true si los operandos no son iguales.
+- **Estrictamente igual (===) :**	Devuelve true si los operandos son iguales y del mismo tipo.
+- **Desigualdad estricta (!==) :**	Devuelve true si los operandos son del mismo tipo pero no iguales, o son de diferente tipo.	
+- **Mayor que (>) :**	Devuelve true si el operando izquierdo es mayor que el operando derecho.	
+- **Mayor o igual que (>=) :**	Devuelve true si el operando izquierdo es mayor o igual que el operando derecho.	
+- **Menor que (<) :**	Devuelve true si el operando izquierdo es menor que el operando derecho.	
+- **Menor o igual (<=) :**	Devuelve true si el operando izquierdo es menor o igual que el operando derecho.
+
+**Operadores lógicos:** Los *operadores lógicos* nos devuelve un resultado a partir de que se cumpla (o no) una *condición*, su resultado es *booleano*, y sus  opeandos son valores lógicos o asimilables a ellos.
+
+- **AND Lógico (&&) :**	| `expr1 && expr2` | Devuelve expr1 si se puede convertir a false; de lo contrario, devuelve expr2. Por lo tanto, cuando se usa con valores booleanos, && devuelve true si ambos operandos son true; de lo contrario, devuelve false.
+- **OR lógico (||) :** | `expr1 || expr2` |	Devuelve expr1 si se puede convertir a true; de lo contrario, devuelve expr2. Por lo tanto, cuando se usa con valores booleanos, || devuelve true si alguno de los operandos es true; si ambos son falsos, devuelve false.
+- **NOT lógico (!) :** | `!expr` |	Devuelve false si su único operando se puede convertir a true; de lo contrario, devuelve true.
+
+
+
