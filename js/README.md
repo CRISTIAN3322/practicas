@@ -226,5 +226,67 @@ Con backticks: `linea1` 'escape de backticks con comillas simples' `linea2`
 - **OR lógico (||) :** | `expr1 || expr2` |	Devuelve expr1 si se puede convertir a true; de lo contrario, devuelve expr2. Por lo tanto, cuando se usa con valores booleanos, || devuelve true si alguno de los operandos es true; si ambos son falsos, devuelve false.
 - **NOT lógico (!) :** | `!expr` |	Devuelve false si su único operando se puede convertir a true; de lo contrario, devuelve true.
 
+## Condicionales
+
+- **if...else:** Ejecuta una sentencia si una condición específicada es evaluada como verdadera. Si la condición es evaluada como falsa, otra sentencia puede ser ejecutada.
+
+*Sintaxis:* 
+```javascript
+if (condición) sentencia1 [else sentencia2]
+```
+
+*Condición:* Una expresión que puede ser evaluada como verdadera o falsa.
+*sentencia1:*
+Sentencia que se ejecutará si condición es evaluada como verdadera. Puede ser cualquier sentencia, incluyendo otras sentenccias if anidadas. Para ejecutar múltiples sentencias, use una sentencia block ({ ... }) para agruparlas.
+*sentencia2.*
+Sentencia que se ejecutará si condición se evalúa como falsa, y exista una cláusula else. Puede ser cualquier sentencia, incluyendo sentencias block y otras sentencias if anidadas.
+
+### Descripción:
+
+Multiples sentencias if...else pueden ser anidadas para crear una cláusula else if:
+
+```javascript
+if (condición1)
+   sentencia1
+else if (condición2)
+   sentencia2
+else if (condición3)
+   sentencia3
+...
+else
+   sentenciaN
+```
+
+Para entender como esto funciona, así es como se vería si el anidamiento hubiera sido indentado correctamente:
+
+```javascript
+if (condición1)
+   sentencia1
+else
+   if (condición2)
+      sentencia2
+   else
+      if (condición3)
+        ...
+```
+
+Para ejecutar varias sentencias en una cláusula, use una sentencia block ({ ... }) para agruparlas. Generalmente, es una buena práctica usar siempre sentencias block, especialmente en código que incluya sentencias if anidadas:
+
+```javascript
+if (condición) {
+   sentencia1
+} else {
+   sentencia2
+}
+```
+
+No confundir los valores primitivos true y false con los valores true y false del objeto Boolean. Cualquier valor diferente de undefined, null, 0, -0, NaN, o la cadena vacía (""), y cualquier objecto, incluso un objeto Boolean cuyo valor es false, se evalúa como verdadero en una sentencia condicional. Por ejemplo:
+
+```javascript
+var b = new Boolean(false);
+if (b) // Esta condición se evalúa como verdadera
+```
+
+
 
 

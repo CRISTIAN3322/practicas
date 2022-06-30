@@ -46,11 +46,22 @@ document.write(frase);
 
 // ! Operadores
 // ? Logicos
-let valor = true;
-let valor2 = true;
+// let valor = true;
+// let valor2 = true;
 // * AND
-let resultado = valor && valor2;
+// let resultado = valor && valor2;
 // * OR
-let resultado2 = valor || valor2;
+// let resultado2 = valor || valor2;
 // * NOT
-let resultado3 = !valor;
+// let resultado3 = !valor;
+
+// ! Condicionales
+// ? if..else
+let nombre = "pedro";
+if (nombre == "pedro") {
+    console.log(`tu Nombres es ${nombre}`); // Primer condicion
+} else if (nombre == "dario") {
+    console.log(`Tu nombres es ${nombre}`); // segunda condicion si la primera no se cumple
+} else {
+    console.log(`Tu nombres es otro`); //terceta condicion si las otras dos no se cumple
+}
