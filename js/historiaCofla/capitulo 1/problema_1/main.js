@@ -2,6 +2,8 @@ let dineroRoberto = prompt(`¿Cuanto dinero tiene Roberto?`);
 let dineroPedro = prompt(`¿Cuanto dinero tiene Pedro?`);
 let dineroCofla = prompt(`¿Cuanto dinero tiene Cofla?`);
 
+dineroCofla = parseInt(dineroCofla);
+
 let helado1 = 0.6;
 let helado2 = 1;
 let helado3 = 1.6;
@@ -44,7 +46,7 @@ if (dineroPedro >= helado7 && helado6) {
 
 if (dineroCofla >= helado7 && helado6) {
     alert(`Cofla puede comprar el Pote de 1/4 KG y el Potecitos de helado confites `);
-    alert(`y a Cofla se sobra ` + dineroCofla - helado7 + " USD");
+    alert(`y a Cofla se sobra ${dineroCofla - helado7} USD`);
 } else if (dineroCofla >= helado5) {
     alert(`Cofla puede comprar el Bombon helado marca helardo`);
 } else if (dineroCofla >= helado4) {
