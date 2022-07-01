@@ -57,6 +57,7 @@ document.write(frase);
 
 // ! Condicionales
 // ? if..else
+/*
 let nombre = "pedro";
 if (nombre == "pedro") {
     console.log(`tu Nombres es ${nombre}`); // Primer condicion
@@ -65,3 +66,10 @@ if (nombre == "pedro") {
 } else {
     console.log(`Tu nombres es otro`); //terceta condicion si las otras dos no se cumple
 }
+*/
+
+// ! Arrays
+let frutas = ["pera", "mango", "manzanas"];
+console.log(frutas);
+console.log(frutas[2]);
+console.log(frutas.length);

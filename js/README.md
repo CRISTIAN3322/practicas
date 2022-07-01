@@ -287,6 +287,49 @@ var b = new Boolean(false);
 if (b) // Esta condición se evalúa como verdadera
 ```
 
+## Arrays
+
+### ¡Qué es un array?
+Un *Array* es una colección o agrupación de elementos en una misma varible, cada uno de ellos ubicado por la posición que ocupa en el array. en javascript, se pueden definir de varias formas:
+
+```javascript
+// Forma tradicional
+const array = new Array("a", "b", "c");
+
+// Mediante literales (preferida)
+const array = ["a", "b", "c"]; // Array con 3 elementos
+const empty = []; // Array vacío (0 elementos)
+const mixto = ["a", 5, true]; // Array mixto (string, number, boolean)
+```
+
+Al contrario que muchos otros lenguahes de programación, Javascript permite que se puedan realizar arryas de **tipo mixto**, no siendo obligatorio que todo los elementos sena de mismo tipo de dato.
+
+- **new Array(tipo de dato):** Cra un array con un tipo de dato expecifico.
+- **new Array(e1,e2...):** Crea un array con ninguno o varios elementos.
+- **[e1,e2...]:** Simplementos los elemtos dentro de corchetes.[]
+
+
+> **OJO:** Al crear un array con new Array(num), si solo indicamos un parámetro y num es un número, Javascript creará un array de num elementos sin definir. Es decir, a = new Array(3) sería equivalente a a = [undefined, undefined, undefined]. Esto no ocurre con su equivalente, a = [3], donde estamos creando un array con un único elemento: 3.
+
+## Acceso aelemento
+
+al igual que los *string*, saber el número elemntos que tiene un arrat es muy sencillo. Sólo hay que acceder a la propiedad `.length` que nos devolverá el número de elementos existentes en un array:
+
+- **.length:** Devuelve el número de elementos del array.
+- **[posicion]:** Operador que devuelve que elemento hay en esa posición.
+
+Por otro lado, si lo que queremos es acceder a un elemento especificado del array, no hay más que utilizar el operador `[]`, al igual que hacemos con los *string* para acceder a un caracter concreto. en este caso, accedemos a la posición de elemento que queremos recuperar sobre el array.
+
+```javascript
+let frutas = ["pera", "mango", "manzanas"];
+console.log(frutas);
+console.log(frutas[2]);
+console.log(frutas.length);
+```
+
+Recuerda que las posiciones empienzan a contar desde 0 y que si intentamos acceder a una posicion que no existe (mayor del tamaño de array), nos devolverá un **UNDEFINDED**.
+
+
 
 
 
