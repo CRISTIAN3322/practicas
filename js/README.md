@@ -686,8 +686,55 @@ const values = [...arr.values()]; // ['Sonic', 'Mario', 'Luigi']
 const entries = [...arr.entries()]; // [[0, 'Sonic'], [1, 'Mario'], [2, 'Luigi']]
 ```
 
+## Arrays Asociativos
 
+Un array asociativo es un array cuyos índices no son numéricos sinó cadenas de texto (claves). En JavaScript no existen realmente arrays asociativos pero podemos simularlos creando objetos y accediendo a sus propiedades.
 
+### Como declaramos un array asociativo
+
+Se utilizan llaves {} para generar el array de elementos clave:valor. Podemos añadir elementos de dos maneras
+
+```javascript
+var coche = new Array();
+coche["color"] = "rojo";
+coche["marca"] = "seat";
+coche["modelo"] = "leon";
+```
+
+```javascript
+var coche = {"color":"rojo","marca":"seat","modelo":"leon"};
+```
+
+Al igual que en los arrays indexados, en los asociativos podemos guardar datos de distinto tipo.
+```javascript
+var coche = {"color":"rojo","CV":100,"AC":true};
+```
+
+En los ejemplos anteriores hemos usado comillas para escribir el valor, pero también es válido de esta forma
+
+```javascript
+var coche = {color:"rojo",CV:100,AC:true};
+```
+
+### Acceder a los valores de un Array asociativo
+
+En los arrays indexados accedemos con el índice o la posición dentro del array. En los arrays asociativos accedemos con la clave
+```javascript
+var coche = {color:"rojo",CV:100,AC:true};
+//Accedemos al dato color del array coche
+var dato = coche["color"];
+//dato ahora vale: 
+```
+Para recorrer un array asociativo usaremos el bucle *for in*
+
+```javascript
+//Array asociativo
+var coche = {color:"rojo",CV:100,AC:true};
+//Recorremos el array con un for each
+for(var clave in coche) {
+    document.write(clave+": " +coche[clave]);
+}
+```
 
 
 
