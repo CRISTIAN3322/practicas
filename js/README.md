@@ -418,7 +418,7 @@ Además, también tenemos otro método con el que es posible crear un  array a p
 const array = ["a", "b", "c"];
 
 array.join("->"); // Devuelve 'a->b->c'
-array.join("."); // Devuelve 'a.b.c'
+array.join("."); // Devuelve 'a.b.
 "a.b.c".split("."); // Devuelve ['a', 'b', 'c']
 "5.4.3.2.1".split("."); // Devuelve ['5', '4', '3', '2', '1']
 ```
@@ -433,5 +433,261 @@ Array.from(document.querySelector("body")); // [body.document]
 De forma opcional, *Array.from(obj)* puede recibir dos parámetros más, al margen de *obj*: una función *f* y un parámetro *thisVal*. El funcionamiento de estos parámetros es similar al del método *.map()* que veremos en un tema posterior de *Array functions*.
 
 ### Búsqueda y Comprobación
+
+Existen varios métodos para realizar ciertas comprobaciones con arrays:
+
+- **Array.isArray(obj):** Comprueba si *obj* es un array. Devuelve *true* o *false*.
+- **.includes(obj,from):** Comprueba si *obj* es uno de los elementos incluidos en el array.
+- **.index_Of(obj,from):** Devuelve la posicion de la primera aparicíón de *obj* desde *from*.
+- **.lastIndexOf(obj,from):** Devuelve la posicion la +ultima aparicíón de *obj* desde *from*.
+
+El primero de ellos, *Array.isArray(obj)* se utiliza para comprobar si *obj* es un *array* o no, devolviendo un booleano. Los otros tres métodos funcionan exactamente igual que sus equivalentes en los string.
+
+El método *includes()* comprueba si el elemento *obj* pasado por parámetro es uno de los elementos que incluye el *array*, partiendo desde la posición *from*. Si se omite *from*, se parte desde 0.
+
+```javascript
+const array = [5, 10, 15, 20, 25];
+
+Array.isArray(array); // true
+array.includes(10); // true
+array.includes(10, 2); // false
+array.indexOf(25); // 4
+array.lastIndexOf(10, 0); // -1
+```
+Por otro lado, tenemos *indexOf()* y *lastIndexOf()* dos funciones que se utilizan para devolver la posición del elemento *obj* pasado por parámetro, empezando a buscar en la posición *from* (o 0 si se omite). El primer método, devuelve la primera aparición, mientras que el segundo método devuelve la última aparición.
+
+### Modificación de arrays
+
+Es posible que tengamos un array específico al que queremos hacer ciertas modificaciones donde *slice()* y *splice()* se quedan cortos (o resulta más cómodo utilizar los siguientes métodos). Existen algunos métodos introducidos en **ECMAScript 6** que nos permiten crear una versión modificada de un array, mediante métodos como **copyWithin()** o **fill()**:
+
+- **.copyWithin(pos, ini, end):** El primero de ellos, copyWithin(pos, ini, end) nos permite crear una copia del array que alteraremos de la siguiente forma: en la posición pos copiaremos los elementos del propio array que aparecen desde la posición ini hasta la posición end. Es decir, desde la posición 0 hasta pos será exactamente igual, y de ahí en adelante, será una copia de los valores de la posición ini a la posición end. Veamos algunos ejemplos:
+  
+```javascript
+const array = ["a", "b", "c", "d", "e", "f"];
+
+// Estos métodos modifican el array original
+array.copyWithin(5, 0, 1); // Devuelve ['a', 'b', 'c', 'd', 'e', 'a']
+array.copyWithin(3, 0, 3); // Devuelve ['a', 'b', 'c', 'a', 'b', 'c']
+array.fill("Z", 0, 5); // Devuelve ['Z', 'Z', 'Z', 'Z', 'Z', 'c']
+```
+
+- **.fill(obj, ini, end) :** Por otro lado, el método fill(obj, ini, end) es mucho más sencillo. Se encarga de devolver una versión del array, rellenando con el elemento obj desde la posición ini hasta la posición end.
+
+### Ordenaciones
+
+En Javascript, es muy habitual que tengamos arrays y queramos ordenar su contenido por diferentes criterios. En este apartado, vamos a ver los métodos *reverse()* y *sort()*, utiles para ordenar un array:
+
+- **.reverse():** Invierte el orden de elementos del array.
+- **.sort():** Ordena los elementos del array bajo un criterio de *ordenación alfabética*.
+- **.sort(func):** Ordena los elementos del array bajo un criterio de ordenación *func*.
+
+En primer lugar, el método *reverse()* cambia los elementos del array en orden inverso, es decir, si tenemos [5, 4, 3] lo modifica de modo que ahora tenemos [3, 4, 5]. Por otro lado, el método *sort()* realiza una ordenación (por orden alfabético) de los elementos del array:
+
+```javascript
+const array = ["Alberto", "Ana", "Mauricio", "Bernardo", "Zoe"];
+
+// Ojo, cada línea está modificando el array original
+array.sort(); // ['Alberto', 'Ana', 'Bernardo', 'Mauricio', 'Zoe']
+array.reverse(); // ['Zoe', 'Mauricio', 'Bernardo', 'Ana', 'Alberto']
+```
+
+Un detalle muy importante es que estos dos métodos modifican el array original, además de devolver el array modificado. Si no quieres que el array original cambie, asegurate de crear primero una copia del array, para así realizar la ordenación sobre esa copia y no sobre el original.
+
+Sin embargo, la ordenación anterior se realizó sobre string  y todo fue bien. Veamos que ocurre si intentamos ordenar un array de números:
+
+```javascript
+const array = [1, 8, 2, 32, 9, 7, 4];
+
+array.sort(); // Devuelve [1, 2, 32, 4, 7, 8, 9], que NO es el resultado deseado
+```
+Esto ocurre porque, al igual que en el ejemplo anterior, el tipo de ordenación que realiza *sort()* por defecto es una ordenación alfabética, mientras que en esta ocasión buscamos una ordenación natural, que es la que se suele utilizar con números. Esto se puede hacer en Javascript, pero requiere pasarle por parámetro al *sort()* lo que se llama una función de comparación.
+
+### Función de comparación
+
+Como hemos visto, la ordenación que realiza *sort()* por defecto es siempre una ordenación alfabética. Sin embargo, podemos pasarle por parámetro lo que se conoce con los nombres de **función de ordenación** o **función de comparación**. Dicha función, lo que hace es establecer otro criterio de ordenación, en lugar del que tiene por defecto:
+
+```javascript
+const array = [1, 8, 2, 32, 9, 7, 4];
+
+// Función de comparación para ordenación natural
+const fc = function (a, b) {
+  return a - b;
+};
+
+array.sort(fc); // Devuelve [1, 2, 4, 7, 8, 9, 32], que SÍ es el resultado deseado
+```
+Como se puede ver en el ejemplo anterior, creando la función de ordenación *fc* y pasándola por parámetro a *sort()*, le indicamos como debe hacer la ordenación y ahora si la realiza correctamente.
+
+Si profundizamos en la tarea que realiza el *sort()*, lo que hace concretamente es analizar pares de elementos del array en cuestión. El primer elemento es *a* y el segundo elemento es *b*. Por lo tanto, al pasarle la función de comparación *fc*, dicha función se encargará de, si devuelve *true* cambia el orden de a y b, si devuelve *false* los mantiene igual. Esto es lo que se conoce como el método de la burbuja, uno de los sistemas de ordenación más sencillos.
+
+
+## Array functions
+
+Así como tenemos un conjunto de métodos para realizar sobre variables que sean strign u otro conjunto de métodos para variables que sean number, existe una serie de métodos que podemos utilizar sobre variables que sean de tipo array. Son las llamadas **array functions** que veremos a continuación.
+
+### ¿Qué son las Array functions? 
+
+Básicamente, son métodos que tiene cualquier variable que sea de tipo *array*, y que permite realizar una operación con todos los elementos de dicho array para conseguir un objetivo concreto, dependiendo del método. En general, a dichos métodos se les pasa por parámetro una **función callback** y unos parámetros opcionales.
+
+Estas son las *Array functions* que podemos encontrarnos en Javascript:
+
+- **.forEach (Cada uno):** Como se puede ver, el método *forEach()* no devuelve nada y espera que se le pase por parámetro una *function* que se ejecutará por cada elemento del array. Esa función, puede ser pasada en cualquiera de los formatos que hemos visto: como función tradicional o como función flecha:
+
+```javascript
+const arr = ["a", "b", "c", "d"];
+
+// Con funciones por expresión
+const f = function () {
+  console.log("Un elemento.");
+};
+arr.forEach(f);
+
+// Con funciones anónimas
+arr.forEach(function () {
+  console.log("Un elemento.");
+});
+
+// Con funciones flecha
+arr.forEach(() => console.log("Un elemento."));
+```
+
+Sin embargo, este ejemplo no tiene demasiada utilidad. A la *fuction callback* se le pueden pasar varios parámetros opcionales:
+
+* Si se le pasa un primer parámetro, este será el elemento del array.
+* Si se le pasa un segundo parámetro, este será la posición en el array
+* Si se le pasa un tercer parámetro, este será el array en cuestión.
+
+Veamos un ejemplo:
+```javascript
+const arr = ["a", "b", "c", "d"];
+
+arr.forEach((e) => console.log(e)); // Devuelve 'a' / 'b' / 'c' / 'd'
+arr.forEach((e, i) => console.log(e, i)); // Devuelve 'a' 0 / 'b' 1 / 'c' 2 / 'd' 3
+arr.forEach((e, i, a) => console.log(a[0])); // Devuelve 'a' / 'a' / 'a' / 'a'
+```
+En este ejemplo, he nombrado *e* al parámetro que hará referencia al elemento, *i* al parámetro que hará referencia al índice (posición del array) y *a* al parámetro que hará referencia al array en cuestión. Aún así, el usuario puede ponerle a estos parámetros el nombre que prefiera. Como se puede ver, realmente *forEach()* es otra forma de hacer un bucle (sobre un array), sin tener que recurrir a bucles tradicionales como *for* o *while*.
+
+> Como vemos en la tabla anterior, al método *forEach()* se le puede pasar un segundo parámetro *arg*, que representa el valor que sobreescribiría a la palabra clave *this* en el código dentro de la función callback. De necesitar esta funcionalidad, recuerda que no puedes utilizar las funciones flecha, ya que el this no tiene efecto en ellas.
+
+- **every(Todo):** El método *every()* permite comprobar si todos y cada uno de los elementos de un array cumplen la condición que se especifique en la function callback:
+
+```javascript
+const arr = ["a", "b", "c", "d"];
+arr.every((e) => e.length == 1); // true
+```
+En este caso, la magia está en el *callback*. La condición es que la longitud de cada elemento function del array sea 1. Si dicha función devuelve *true*, significa que cumple la condición, si devuelve *false*, no la cumple. Por lo tanto, si todos los elementos del array devuelven *true*, entonces *every()* devolverá *true*.
+
+```javascript
+const arr = ["a", "b", "c", "d"];
+
+// Esta función se ejecuta por cada elemento del array
+const todos = function (e) {
+  // Si el tamaño del string es igual a 1
+  if (e.length == 1) return true;
+  else return false;
+};
+
+arr.every(todos); // Le pasamos la función callback todos() a every
+```
+
+- **some(al menos uno):** De la misma forma que el método anterior sirve para comprobar si todos los elementos del array cumplen una determinada condición, con *some()* podemos comprobar si al menos uno de los elementos del array, cumplen dicha condición definida por el callback.
+
+```javascript
+const arr = ["a", "bb", "c", "d"];
+arr.some((e) => e.length == 2); // true
+```
+
+Observa que en este ejemplo, el método *some()* devuelve *true* porque existe al menos un elemento del array con una longitud de 2 carácteres.
+
+- **map(Transformaciones):** El método *map()* es un método muy potente y útil para trabajar con arrays, puesto que su objetivo es devolver un nuevo array donde cada uno de sus elementos será lo que devuelva la función callback por cada uno de los elementos del array original:
+
+```javascript
+const arr = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+const nuevoArr = arr.map((e) => e.length);
+
+nuevoArr; // Devuelve [3, 5, 5, 9, 9]
+```
+Observa que el array devuelto por *map()* es *nuevoArr*, y cada uno de los elementos que lo componente, es el número devuelto por el callback (e.length), que no es otra cosa sino el tamaño de cada string.
+
+Este método nos permite hacer multitud de operaciones, ya que donde devolvemos *e.length* podriamos devolver el propio string modificado o cualquier otra cosa.
+
+- **filter(filtrado):** El método *filter()* nos permite filtrar los elementos de un array y devolver un nuevo array con sólo los elementos que queramos. Para ello, utilizaremos la función callback para establecer una condición que devuelve *true* sólo en los elementos que nos interesen:
+
+```javascript
+const arr = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+const nuevoArr = arr.filter((e) => e[0] == "P");
+
+nuevoArr; // Devuelve ['Pablo', 'Pedro', 'Pancracio']
+```
+En este ejemplo, filtramos sólo los elementos en los que su primera letra sea *P*. Por lo tanto, la variable nuevoArr será un array con sólo esos elementos.
+
+Ten en cuenta que si ningún elemento cumple la condición, *filter()* devuelve un Array vacío.
+
+- **find(Búsqueda):** En **ECMAScript 6** se introducen dos nuevos métodos dentro de las Array functions: **find()** y **findIndex()**. Ambos se utilizan para buscar elementos de un array mediante una condición, la diferencia es que el primero devuelve el elemento mientras que el segundo devuelve su posición en el array original. Veamos como funcionan:
+
+```javascript
+const arr = ["Ana", "Pablo", "Pedro", "Pancracio", "Heriberto"];
+
+arr.find((e) => e.length == 5); // 'Pablo'
+arr.findIndex((e) => e.length == 5); // 1
+```
+La condición que hemos utilizado en este ejemplo es buscar el elemento que tiene 5 carácteres de longitud. Al buscarlo en el array original, el primero que encontramos es Pablo, puesto que *find()* devolverá 'Pablo' y *findIndex()* devolverá 1, que es la segunda posición del array donde se encuentra.
+
+En el caso de no encontrar ningún elemento que cumpla la condición, *find()* devolverá **undifined** , mientras que *findIndex()*, que debe devolver un , devolverá **-1**.
+
+- **reduce(Acumuladores):** Por último, nos encontramos con una pareja de métodos denominados **reduce()** y **reduceRight()**. Ambos métodos se encargan de recorrer todos los elementos del array, e ir acumulando sus valores (o alguna operación diferente) y sumarlo todo, para devolver su resultado final.
+
+En este par de métodos, encontraremos una primera diferencia en su función callback, puesto que en lugar de tener los clásicos parámetros opcionales *(e, i, a)* que hemos utilizado hasta ahora, tiene *(p, e, i, a)*, donde vemos que aparece un primer parámetro extra inicial: *p*.
+
+En la primera iteración, *p* contiene el valor del primer elemento del array y *e* del segundo. En siguientes iteraciones, *p* es el acumulador que contiene lo que devolvió el callback en la iteración anterior, mientras que *e* es el siguiente elemento del array, y así sucesivamente. Veamos un ejemplo para entenderlo:
+
+```javascript
+const arr = [95, 5, 25, 10, 25];
+arr.reduce((p, e) => {
+  console.log(`P=${p} e=${e}`);
+  return p + e;
+});
+
+// P=95 e=5     (1ª iteración: elemento 1: 95 + elemento 2: 5) = 100
+// P=100 e=25   (2ª iteración: 100 + elemento 3: 25) = 125
+// P=125 e=10   (3ª iteración: 125 + elemento 4: 10) = 135
+// P=135 e=25   (4ª iteración: 135 + elemento 5: 25) = 160
+
+// Finalmente, devuelve 160
+```
+Gracias a esto, podemos utilizar el método *reduce()* como acumulador de elementos de izquierda a derecha y *reduceRight()* como acumulador de elementos de derecha a izquierda. Veamos un ejemplo de cada uno, realizando una resta en lugar de una suma:
+
+```javascript
+const arr = [95, 5, 25, 10, 25];
+arr.reduce((p, e) => p - e); // 95 - 5 - 25 - 10 - 25. Devuelve 30
+arr.reduceRight((p, e) => p - e); // 25 - 10 - 25 - 5 - 95. Devuelve -110
+```
+
+> Recuerda que en cualquiera de estas array functions puedes realizar operaciones o condiciones tanto con el parámetro e (elemento), como con el parámetro i (índice o posición) o con el parámetro a (array).
+
+- **Iteradores:** En *ECMAScript 6* se introducen unos métodos muy útiles para utilizar como iteradores (objetos preparados para recorrer los elementos de un array y devolver información). Hablamos de los métodos **keys()**, **values()** y **entries()**. El primero de ellos permite avanzar en un array, mientras va devolviendo las posiciones, el segundo los valores (el elemento en sí) y el tercero devuelve un array con la posición en el primer elemento y el valor en el segundo elemento.
+  
+  - **.key():** Permite iterar un array e ir devolviendo sus índices o posiciones (keys).
+  - **.values():** Permite iterar un array e ir devolviendo sus valores (elementos).
+  - **.entries():** Permite iterar un array e ir devolviendo un array [índice, valor].
+
+Estos métodos, combinados con un *for...of* por ejemplo, permiten recorrer los arrays y obtener diferente información del array rápidamente. En el siguiente ejemplo utilizamos una característica avanzada que veremos más adelante llamada desestructuración:
+
+```javascript
+const arr = ["Sonic", "Mario", "Luigi"];
+
+// Obtiene un array con las keys (posiciones)
+const keys = [...arr.keys()]; // [0, 1, 2]
+
+// Obtiene un array con los valores (elementos)
+const values = [...arr.values()]; // ['Sonic', 'Mario', 'Luigi']
+
+// Obtiene un array con las entradas (par key, valor)
+const entries = [...arr.entries()]; // [[0, 'Sonic'], [1, 'Mario'], [2, 'Luigi']]
+```
+
+
+
+
 
 

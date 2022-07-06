@@ -73,3 +73,15 @@ let frutas = ["pera", "mango", "manzanas"];
 console.log(frutas);
 console.log(frutas[2]);
 console.log(frutas.length);
+
+// ? Escribir una funcion que reciba una frase y retorne la frase pero con la ultima palabra modificada. La ultima palabra se reemplazara con la palabra "gato"
+
+function reemplanzarPalabra(frase) {
+    let ultimoEspacio = frase.lastIndexOf(" ");
+    let fraseSinPalabra = frase.slice(0, ultimoEspacio + 1);
+    let nuevaFrase = fraseSinPalabra + "gato";
+
+    return nuevaFrase;
+}
+
+console.log(reemplanzarPalabra("frase cualquiera "));
