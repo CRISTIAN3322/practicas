@@ -226,65 +226,400 @@ Con backticks: `linea1` 'escape de backticks con comillas simples' `linea2`
 - **OR lógico (||) :** | `expr1 || expr2` |	Devuelve expr1 si se puede convertir a true; de lo contrario, devuelve expr2. Por lo tanto, cuando se usa con valores booleanos, || devuelve true si alguno de los operandos es true; si ambos son falsos, devuelve false.
 - **NOT lógico (!) :** | `!expr` |	Devuelve false si su único operando se puede convertir a true; de lo contrario, devuelve true.
 
-## Condicionales
+## Estructuras de control
 
-- **if...else:** Ejecuta una sentencia si una condición específicada es evaluada como verdadera. Si la condición es evaluada como falsa, otra sentencia puede ser ejecutada.
+Cuando escribimos código Javascript, por defecto, el navegador leerá el script de forma secuencial, es decir, una línea detrás de otra, desde arriba hacia abajo. Por lo tanto, una acción que realicemos en la línea 5 nunca ocurrirá antes que una que aparece en la línea 3. Ya veremos que más adelante esto se complica, pero en principio partimos de esa base.
 
-*Sintaxis:* 
+### Condicionales
+
+Al hacer un programa necesitaremos establecer *condiciones* o *decisiones*, donde buscamos que el navegador realice una *acción A* si se cumple una condición o una *acción B* si *no se cumple*. Este es el primer tipo de estructuras de control que encontraremos. Para ello existen varias estructuras de control:
+
+- **If:** *Condición simple:* Si ocurre algo, haz lo siguiente...
+- **If/else:** *Condición con alternativa:* Si ocurre algo, haz esto, sino, haz lo esto otro...
+- **?:** *Operador ternario:* Equivalente a If/else, método abreviado
+- **Switch** *Estructura para casos específicos:* Similar a varios If/else anidados.
+
+### Condicional If 
+
+Quizás, el más conocido de estos mecanismos de estructura de control es el *if* (condicional). Con él podemos indicar en el programa que se tome un camino sólo si se cumple la *condición* que establezcamos:
+
 ```javascript
+var nota = 7;
+console.log("He realizado mi examen.");
+
+// Condición (si nota es mayor o igual a 5)
+if (nota >= 5) {
+  console.log("¡Estoy aprobado!");
+}
+```
+En este caso, como el valor de nota es superior a 5, nos aparecerá en la consola el mensaje «¡Estoy aprobado!». Sin embargo, si modificamos en la primera línea el valor de nota a un valor inferior a 5, no nos aparecerá ese mensaje.
+
+> Cuando dentro de las llaves ({ }) sólo tenemos una línea, se pueden omitir dichas llaves. Aún así, es recomendable ponerlas siempre si tenemos dudas o no estamos seguros.
+
+### Condicional If / else
+
+Pero se puede dar el caso que queramos establecer una alternativa a una condición. Para eso utilizamos el *if* seguido de un *else*. Con esto podemos establecer una acción A si se cumple la condición, y una acción B si no se cumple.
+
+Vamos a modificar el ejemplo anterior para mostrar también un mensaje cuando estamos suspendidos, pero en este caso, en lugar de mostrar el mensaje directamente con un *console.log* vamos a guardar ese texto en una nueva variable *calificacion*:
+
+#### Sintaxis
+```javascript
+/*
 if (condición) sentencia1 [else sentencia2]
+*/
 ```
-
-*Condición:* Una expresión que puede ser evaluada como verdadera o falsa.
-*sentencia1:*
-Sentencia que se ejecutará si condición es evaluada como verdadera. Puede ser cualquier sentencia, incluyendo otras sentenccias if anidadas. Para ejecutar múltiples sentencias, use una sentencia block ({ ... }) para agruparlas.
-*sentencia2.*
-Sentencia que se ejecutará si condición se evalúa como falsa, y exista una cláusula else. Puede ser cualquier sentencia, incluyendo sentencias block y otras sentencias if anidadas.
-
-### Descripción:
-
-Multiples sentencias if...else pueden ser anidadas para crear una cláusula else if:
+- **condición:** Una expresión que puede ser evaluada como verdadera o falsa.
+- **sentencia1:** Sentencia que se ejecutará si condición es evaluada como verdadera. Puede ser cualquier sentencia, incluyendo otras sentenccias if anidadas. Para ejecutar múltiples sentencias, use una sentencia block ({ ... }) para agruparlas.
+- **sentencia2:** Sentencia que se ejecutará si condición se evalúa como falsa, y exista una cláusula else. Puede ser cualquier sentencia, incluyendo sentencias block y otras sentencias if anidadas.
 
 ```javascript
-if (condición1)
-   sentencia1
-else if (condición2)
-   sentencia2
-else if (condición3)
-   sentencia3
-...
-else
-   sentenciaN
-```
+var nota = 7;
+console.log("He realizado mi examen. Mi resultado es el siguiente:");
 
-Para entender como esto funciona, así es como se vería si el anidamiento hubiera sido indentado correctamente:
-
-```javascript
-if (condición1)
-   sentencia1
-else
-   if (condición2)
-      sentencia2
-   else
-      if (condición3)
-        ...
-```
-
-Para ejecutar varias sentencias en una cláusula, use una sentencia block ({ ... }) para agruparlas. Generalmente, es una buena práctica usar siempre sentencias block, especialmente en código que incluya sentencias if anidadas:
-
-```javascript
-if (condición) {
-   sentencia1
+// Condición
+if (nota < 5) {
+  // Acción A (nota es menor que 5)
+  calificacion = "suspendido";
 } else {
-   sentencia2
+  // Acción B: Cualquier otro caso a A (nota es mayor o igual que 5)
+  calificacion = "aprobado";
+}
+
+console.log("Estoy", calificacion);
+```
+
+Nuevamente, en este ejemplo comprobaremos que podemos conseguir que se muestre el mensaje *Estoy aprobado* o *Estoy suspendido* dependiendo del valor que tenga la variable *nota*. La diferencia con el ejemplo anterior es que creamos una nueva variable que contendrá un valor determinado dependiendo de la condición del *If*.
+
+Por último, el console.log del final, muestra el contenido de la variable calificacion, independientemente de que sea el primer caso o el segundo.
+
+```javascript
+var nota = 7;
+console.log("He realizado mi examen. Mi resultado es el siguiente:");
+
+// Condición
+if (nota < 5) {
+  // Acción A (nota es menor que 5)
+  calificacion = "suspendido";
+}
+if (nota >= 5) {
+  // Acción B (nota es mayor o igual que 5)
+  calificacion = "aprobado";
+}
+
+console.log("Estoy", calificacion);
+```
+
+Este nuevo ejemplo, es equivalente al ejemplo anterior. Si nos fijamos bien, la única diferencia respecto al anterior es que estamos realizando dos if independientes: uno para comprobar si está suspendido y otro para comprobar si está aprobado.
+
+Pero aunque son equivalentes, no son exactamente iguales, ya que en el ejemplo que vimos anteriormente sólo existe un if, y por lo tanto, sólo se realiza una comprobación. En este ejemplo que vemos ahora, se realizan dos if, y por lo tanto, dos comprobaciones.
+
+> En este caso se trata de algo insignificante, pero es importante darse cuenta de que el primer ejemplo estaría realizando menos tareas para conseguir un mismo resultado, ergo, el primer ejemplo sería más eficiente.
+
+### Operador ternario 
+
+El *operador ternario* es una alternativa de condicional *if/else* de una forma mucho más corta y, en muchos casos, más legible. Vamos a reescribir el ejemplo anterior utilizando este operador:
+
+```javascript
+var nota = 7;
+console.log("He realizado mi examen. Mi resultado es el siguiente:");
+
+// Operador ternario: (condición ? verdadero : falso)
+var calificacion = nota < 5 ? "suspendido" : "aprobado";
+
+console.log("Estoy", calificacion);
+```
+
+Este ejemplo hace exactamente lo mismo que el ejemplo anterior. La idea del operador ternario es que podemos condensar mucho código y tener un if en una sola línea. Obviamente, es una opción que sólo se recomienda utilizar cuando son if muy pequeños.
+
+### Condicional múltiple
+
+Es posible que necesitemos crear un condicional múltiple con más de 2 condiciones, por ejemplo, para establecer la calificación específica. Para ello, podemos anidar varios *if/else* uno dentro de otro, de la siguiente forma:
+
+```javascript
+var nota = 7;
+console.log("He realizado mi examen.");
+
+// Condición
+if (nota < 5) {
+  calificacion = "Insuficiente";
+} else if (nota < 6) {
+  calificación = "Suficiente";
+} else if (nota < 8) {
+  calificacion = "Bien";
+} else if (nota <= 9) {
+  calificacion = "Notable";
+} else {
+  calificacion = "Sobresaliente";
+}
+
+console.log("He obtenido un", calificacion);
+```
+Sin embargo, anidar de esta forma varios if suele ser muy poco legible y produce un código algo feo. En algunos casos se podría utilizar otra estructura de control llamada switch, que puede ser útil en ciertos casos.
+
+### Condicional Switch
+
+La estructura de control *switch* permite definir casos específicos a realizar en el caso de que la variable expuesta como condición sea igual a los valores que se especifican a continuación mediante los *case*. No obstante, hay varias puntualizaciones que aclarar sobre este ejemplo:
+
+#### Sintaxis
+
+```javascript
+/*
+switch (expresión) {
+  case valor1:
+    //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor1
+    [break;]
+  case valor2:
+    //Declaraciones ejecutadas cuando el resultado de expresión coincide con el valor2
+    [break;]
+  ...
+  case valorN:
+    //Declaraciones ejecutadas cuando el resultado de expresión coincide con valorN
+    [break;]
+  default:
+    //Declaraciones ejecutadas cuando ninguno de los valores coincide con el valor de la expresión
+    [break;]
+}
+*/
+```
+
+- **expresión:** Es una expresión que es comparada con el valor de cada instancia case.
+- **case valorN:** Una instancia case valorN es usada para ser comparada con la expresión. Si la expresión coincide con el valorN, las declaraciones dentro de la instancia case se ejecutan hasta que se encuentre el final de la declaración switch o hasta encontrar una interrupción break.
+- **default:** Una instancia default, cuando es declarada, es ejecutada si el valor de la expresión no coincide con cualquiera de las otras instancias case valorN.
+
+#### Ejemplo
+
+```javascript
+var nota = 7;
+console.log("He realizado mi examen. Mi resultado es el siguiente:");
+
+// Nota: Este ejemplo NO es equivalente al ejemplo anterior (leer abajo)
+switch (nota) {
+  case 10:
+    calificacion = "Sobresaliente";
+    break;
+  case 9:
+  case 8:
+    calificacion = "Notable";
+    break;
+  case 7:
+  case 6:
+    calificacion = "Bien";
+    break;
+  case 5:
+    calificacion = "Suficiente";
+    break;
+  case 4:
+  case 3:
+  case 2:
+  case 1:
+  case 0:
+    calificacion = "Insuficiente";
+    break;
+  default:
+    // Cualquier otro caso
+    calificacion = "Nota errónea";
+    break;
+}
+
+console.log("He obtenido un", calificacion);
+```
+
+En primer lugar, el ejemplo anterior no es exactamente equivalente al anterior. Este ejemplo funcionaría si sólo permitimos notas que sean números enteros, es decir, números del 0 al 10, sin decimales. En el caso de que nota tuviera por ejemplo, el valor 7.5, mostraría Nota errónea.
+
+> El ejemplo de los *if múltiples* si controla casos de números decimales porque establecemos comparaciones de rangos con mayor o menor, cosa que con el switch no se puede hacer. El *switch* está indicado para utilizar sólo con casos con valores concretos y específicos.
+
+En segundo lugar, observa que al final de cada caso es necesario indicar un break para salir del switch. En el caso que no sea haga, el programa saltará al siguiente caso, aunque no se cumpla la condición específica.
+
+## Bucles e iteraciones
+
+Una de las principales ventajas de la programación es la posibilidad de crear bucles y repeticiones para tareas específicas, y que no tengamos que realizarlas varias veces de forma manual. Existen muchas formas de realizar bucles, vamos a ver los más basicos, similares en otros lenguajes de programación:
+
+- **while:** Bucles simples.
+- **do..while:** Bucles simples que se realizan siempre como mínimo una vez.
+- **for:** Bucles clásicos por excelencia.
+- **for..in:** Bucles sobre posiciones de un array. Los veremos más adelante.
+- **for..of:** Bucles sobre elementos de un array. Los veremos más adelante.
+
+Antes de comenzar a ver que tipos de bucles existen en Javascript, es necesario conocer algunos conceptos básicos de los bucles:
+
+- *Condición:* Al igual que en los if, en los bucles se va a evaluar una condición para saber si se debe repetir el bucle o finalizarlo. Generalmente, si la condición es verdadera, se repite. Si es falsa, se finaliza.
+- *Iteración:* Cada repetición de un bucle se denomina iteración. Por ejemplo, si un bucle repite una acción 10 veces, se dice que tiene 10 iteraciones.
+- *Contador:* Muchas veces, los bucles tienen una variable que se denomina contador, porque cuenta el número de repeticiones que ha hecho, para finalizar desde que llegue a un número concreto. Dicha variable hay que inicializarla (crearla y darle un valor) antes de comenzar el bucle.
+- *Incremento:* Cada vez que terminemos un bucle se suele realizar el incremento (o decremento) de una variable, generalmente la denominada variable contador.
+- *Bucle infinito:* Es lo que ocurre si en un bucle se nos olvida incrementar la variable contador o escribimos una condición que nunca se puede dar. El bucle se queda eternamente repitiéndose y el programa se queda «colgado».
+
+### Bucle while
+
+El bucle while es uno de los bucles más simples que podemos crear. Vamos a repasar el siguiente ejemplo y todas sus partes, para luego repasar que ocurre en cada iteración del bucle:
+
+#### Sintaxis
+```javascript
+/*
+while (condicion)
+  sentencia
+/*
+```
+- **condicion:** Una expresión que se evalúa antes de cada paso del bucle. Si esta condición se evalúa como verdadera, se ejecuta sentencia. Cuando la condición se evalúa como false, la ejecución continúa con la sentencia posterior al bucle while.
+- **sentencia:** Una sentecia que se ejecuta mientras la condición se evalúa como verdadera. Para ejecutar múltiples sentencias dentro de un bucle, utiliza una sentencia block ({ ... }) para agrupar esas sentencias.
+
+#### Ejemplo
+
+```javascript
+i = 0; // Inicialización de la variable contador
+
+// Condición: Mientras la variable contador sea menor de 5
+while (i < 5) {
+  console.log("Valor de i:", i);
+
+  i = i + 1; // Incrementamos el valor de i
+}
+```
+Veamos que es lo que ocurre a la hora de hacer funcionar ese código:
+
+* Antes de entrar en el bucle while, se inicializa la variable i a 0.
+* Antes de realizar la primera iteración del bucle, comprobamos la condición.
+* Si la condición es verdadera, hacemos lo que está dentro del bucle.
+* Mostramos por pantalla el valor de i y luego incrementamos el valor actual de i en 1.
+* Volvemos al inicio del bucle para hacer una nueva iteración.
+* Comprobamos de nuevo la condición del bucle.
+* Cuando la condición sea falsa, salimos del bucle y continuamos el programa.
+
+Una muestra paso a paso de las iteraciones de este primer ejemplo:
+
+**Antes del bucle**
+- i = undefined
+- Antes de comenzar el programa.
+**Iteración #1**
+- i = 0
+- ¿(0 < 5)? Verdadero. Mostramos 0 por pantalla.
+- i = 0 + 1
+**Iteración #2**
+- i = 1
+- ¿(1 < 5)? Verdadero. Mostramos 1 por pantalla.
+- i = 1 + 1
+**Iteración #3**
+- i = 2
+- ¿(2 < 5)? Verdadero. Mostramos 2 por pantalla.
+- i = 2 + 1
+**Iteración #4**
+- i = 3
+- ¿(3 < 5)? Verdadero. Mostramos 3 por pantalla.
+- i = 3 + 1
+**Iteración #5**
+- i = 4
+- ¿(4 < 5)? Verdadero. Mostramos 4 por pantalla.
+- i = 4 + 1
+**Iteración #6**
+- i = 5
+- ¿(5 < 5)? Falso. Salimos del bucle.
+
+El bucle *while* es muy simple, pero requiere no olvidarse accidentalmente de la inicialización y el incremento (además de la condición), por lo que el bucle *for* resulta más interesante, ya que para hacer un bucle de este tipo hay que escribir previamente siempre estos tres factores.
+
+> La operación i = i + 1 es lo que se suele llamar un incremento de una variable. Es muy común simplificarla como i++, que hace exactamente lo mismo: aumenta en 1 su valor.
+
+### do...while
+
+**Pruébalo**
+La sentencia (hacer mientras) crea un bucle que ejecuta una sentencia especificada, hasta que la condición de comprobación se evalúa como falsa. La condición se evalúa después de ejecutar la sentencia, dando como resultado que la sentencia especificada se ejecute al menos una vez.
+
+```javascript
+let result = '';
+let i = 0;
+
+do {
+  i = i + 1;
+  result = result + i;
+} while (i < 5);
+
+console.log(result);
+// expected result: "12345"
+```
+
+#### Sintaxis
+
+> do
+>   sentencia
+> while (condición);
+
+- **sentencia:** Una sentencia que se ejecuta al menos una vez y es reejecutada cada vez que la condición se evalúa a verdadera. Para ejecutar múltiples sentencias dentro de un bucle, utilice la sentencia block ({ ... }) para agrupar aquellas sentencias.
+- **condición:**
+Una expresión se evalúa después de cada pase del bucle. Si condición se evalúa como verdadera, la sentencia se re-ejecuta. Cuando condición se evalúa como falsa, el control pasa a la siguiente sentencia hacer mientras.
+
+### Bucle for
+
+El bucle *for* es quizás uno de los más utilizados en el mundo de la programación. En Javascript se utiliza exactamente igual que en otros lenguajes como Java o C/C++. Veamos el ejemplo anterior utilizando un bucle for:
+
+```javascript
+// for (inicialización; condición; incremento)
+for (i = 0; i < 5; i++) {
+  console.log("Valor de i:", i);
 }
 ```
 
-No confundir los valores primitivos true y false con los valores true y false del objeto Boolean. Cualquier valor diferente de undefined, null, 0, -0, NaN, o la cadena vacía (""), y cualquier objecto, incluso un objeto Boolean cuyo valor es false, se evalúa como verdadero en una sentencia condicional. Por ejemplo:
+Como vemos, la sintaxis de un bucle for es mucho más compacta y rápida de escribir que la de un bucle while. La primera vez puede parecer algo confusa, pero es mucho más práctica porque te obliga a escribir la inicialización, la condición y el incremento antes del propio bucle, y eso hace que no te olvides de estos tres puntos fundamentales.
+
+> En programación es muy habitual empezar a contar desde cero. Mientras que en la vida real se contaría desde 1 hasta 10, en programación se contaría desde 0 hasta 9.
+
+#### Incremento múltiple 
+
+Aunque no suele ser habitual, es posible añadir varias inicializaciones o incrementos en un bucle for separando por comas. En el siguiente ejemplo además de aumentar el valor de una variable i, inicializamos una variable con el valor 5 y lo vamos decrementando:
 
 ```javascript
-var b = new Boolean(false);
-if (b) // Esta condición se evalúa como verdadera
+for (i = 0, j = 5; i < 5; i++, j--) {
+  console.log("Valor de i y j:", i, j);
+}
+```
+
+Si i++ aumenta en 1 el valor de i en cada iteración, lo que hace j-- es disminuir en 1 el valor de j en cada iteración.
+
+### for...in
+
+La instrucción for-in itera sobre todas las propiedades enumerables de un objeto que está codificado por cadenas y muestra la posición.
+
+#### Sintaxis
+```javascript
+/*
+for (variable in objeto)
+  instrucción
+*/
+```
+
+- **variable:** Asigna un nombre de propiedad diferente a la variable en cada iteración.
+- **objeto:** Objeto cuyas propiedades enumerables que no son símbolos se iteran.
+
+#### Ejemplo 
+
+```javascript
+let animales = ["gato", "perro", "tiraosaurio rex"]
+
+for (animal in animales){ // Recorre el Array
+  console.log(animal); // Muesta la posicion 
+  }
+```
+
+## for...of
+
+La sentencia sentencia for...of ejecuta un bloque de código para cada elemento de un objeto iterable, como lo son: String, Array, objetos similares a array y muestra el valor que contiene la posición.
+
+#### Sintaxis
+```javascript
+/*
+for (variable of iterable) {
+  statement
+}
+*/
+```
+- **variable:** En cada iteración el elemento (propiedad enumerable) correspondiente es asignado a variable.
+- **iterable:** Objeto cuyas propiedades enumerables son iteradas. 
+
+#### Ejemplo 
+
+```javascript
+let animales = ["gato", "perro", "tiraosaurio rex"]
+
+for (animal of animales){ // Recorre el array
+  console.log(animal); // Muestra el valor de la posición
+  }
 ```
 
 ## Arrays
