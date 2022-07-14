@@ -226,6 +226,141 @@ Con backticks: `linea1` 'escape de backticks con comillas simples' `linea2`
 - **OR lógico (||) :** | `expr1 || expr2` |	Devuelve expr1 si se puede convertir a true; de lo contrario, devuelve expr2. Por lo tanto, cuando se usa con valores booleanos, || devuelve true si alguno de los operandos es true; si ambos son falsos, devuelve false.
 - **NOT lógico (!) :** | `!expr` |	Devuelve false si su único operando se puede convertir a true; de lo contrario, devuelve true.
 
+## Funciones
+
+En programación, cuando nuestro código se va haciendo cada vez más grande, necesitaremos buscar una forma de organizarlo y prepararnos para reutilizarlo y no repetir innecesariamente las mismas tareas. Para ello, un primer recurso muy útil son las funciones.
+
+### ¿Qué es una función? 
+
+Las funciones nos permiten agrupar líneas de código en tareas con un nombre, para que, posteriormente, podamos hacer referencia a ese nombre para realizar todo lo que se agrupe en dicha tarea. Para usar funciones hay que hacer 2 cosas:
+
+- **Declarar la función:** Preparar la función, darle un nombre y decirle las tareas que realizará.
+- **Ejecutar la función:** «Llamar» a la función para que realice las tareas de su contenido.
+
+### Declaración
+
+En el siguiente ejemplo veremos la declaración de una función llamada saludar:
+
+```javascript
+// Declaración de la función "saludar"
+function saludar() {
+  // Contenido de la función
+  console.log("Hola, soy una función");
+}
+```
+El contenido de la función es una línea que mostrará por consola un saludo. Sin embargo, si escribimos estas 4-5 líneas de código en nuestro programa, no mostrará nada por pantalla. Esto ocurre así porque solo hemos declarado la función (le hemos dicho que existe), pero aún nos falta el segundo paso, ejecutarla, que es realmente cuando se realizan las tareas de su contenido.
+
+### Ejecución
+
+Veamos, ahora sí, el ejemplo completo con declaración y ejecución
+
+```javascript
+// Declaración de la función "saludar"
+function saludar() {
+  // Contenido de la función
+  console.log("Hola, soy una función");
+}
+
+// Ejecución de la función
+saludar();
+```
+
+### ¿Qué son los parámetros? 
+
+Pero las funciones no sirven sólo para esto. Tienen mucha más flexibilidad de la que hemos visto hasta ahora. A las funciones se les pueden pasar parámetros, que no son más que variables que existirán sólo dentro de dicha función, con el valor pasado desde la ejecución.
+
+Veamos el siguiente ejemplo, utilizando el parámetro hasta:
+
+```javascript
+// Declaración
+function tablaDelUno(hasta) {
+  for (i = 0; i <= hasta; i++) console.log("1 x", i, "=", 1 * i);
+}
+
+// Ejecución
+tablaDelUno(10);
+tablaDelUno(5);
+```
+Como podemos ver, en el interior de los paréntesis de la función se ha indicado una variable llamada hasta. Esa variable contiene el valor que se le da a la hora de ejecutar la función, que en este ejemplo, si nos fijamos bien, se ejecuta dos veces: una con valor 10 y otra con valor 5.
+
+Si analizamos el código de la declaración de la función, vemos que utilizamos la variable hasta en la condición del bucle, para que el bucle llegue hasta ese número (de ahí su nombre). Por lo tanto, en la primera ejecución se nos mostrará la tabla de multiplicar del 1 hasta llegar al 1 x 10 y en la segunda ejecución se nos mostrará la tabla de multiplicar del 1 hasta llegar al 1 x 5.
+
+> La idea de las funciones es enfocarnos en el código de la declaración, y una vez lo tengamos funcionando, nos podemos olvidar de él porque está encapsulado dentro de la función. Simplemente tendremos que recordar el nombre de la función y los parámetros que hay que pasarle. Esto hace que sea mucho más fácil trabajar con el código.
+
+
+### Parámetros múltiples 
+
+Hasta ahora sólo hemos creado una función con 1 parámetro, pero una función de Javascript puede tener muchos más parámetros. Vamos a crear otro ejemplo, mucho más útil donde convertimos nuestra función en algo más práctico y útil:
+
+```javascript
+// Declaración
+function tablaMultiplicar(tabla, hasta) {
+  for (i = 0; i <= hasta; i++) console.log(tabla, "x", i, "=", tabla * i);
+}
+
+// Ejecución
+tablaMultiplicar(1, 10); // Tabla del 1
+tablaMultiplicar(5, 10); // Tabla del 5
+```
+
+En este ejemplo, hemos modificado nuestra función tablaDelUno() por esta nueva versión que hemos cambiado de nombre a tablaMultiplicar(). Esta función necesita que le pasemos dos parámetros: tabla (la tabla de multiplicar en cuestión) y hasta (el número hasta donde llegará la tabla de multiplicar).
+
+De esta forma, las dos llamadas para ejecutar la función mostrarán por la consola la tabla de multiplicar del 1 y del 5.
+
+> Podemos añadir más parámetros a la función según nuestras necesidades. Es importante recordar que el orden de los parámetros es importante y que los nombres de cada parámetro no se pueden repetir en una misma función.
+
+### Parámetros por defecto
+
+Es posible que en algunos casos queramos que ciertos parámetros tengan un valor sin necesidad de escribirlos en la ejecución. Es lo que se llama un valor por defecto.
+
+En nuestro ejemplo anterior, nos podría interesar que la tabla de multiplicar llegue siempre hasta el 10, ya que es el comportamiento por defecto. Si queremos que llegue hasta otro número, lo indicamos explicitamente, pero si lo omitimos, queremos que llegue hasta 10. Esto se haría de la siguiente forma:
+
+```javascript
+function tablaMultiplicar(tabla, hasta = 10) {
+  for (i = 0; i <= hasta; i++) console.log(tabla, "x", i, "=", tabla * i);
+}
+
+// Ejecución
+tablaMultiplicar(2); // Esta tabla llegará hasta el número 10
+tablaMultiplicar(2, 15); // Esta tabla llegará hasta el número 15
+```
+De esta forma nos ahorramos tener que escribir los valores en la ejecución de la función, si en la mayoría de los casos va a tomar ese valor.
+
+> Hay que remarcar que esta característica se añade en ECMAScript 6, por lo que en navegadores sin soporte podría no funcionar correctamente.
+
+En versiones anteriores de ECMAScript se podía realizar de formas similares a la siguiente:
+
+```javascript
+function tablaMultiplicar(tabla, hasta) {
+  if (hasta == undefined) hasta = 10;
+
+  for (i = 0; i <= hasta; i++) console.log(tabla, "x", i, "=", tabla * i);
+}
+```
+En el caso de que el parámetro hasta no tenga valor (es undefined), le asignamos el valor por defecto. En caso contrario (ya tiene valor) continuamos normalmente.
+
+### Devolución de valores 
+
+Hasta ahora hemos utilizado funciones simples que realizan acciones o tareas (en nuestro caso, mostrar por consola), pero habitualmente, lo que buscamos es que esa función realice una tarea y nos devuelva la información al exterior de la función, para así utilizarla o guardarla en una variable, que utilizaremos posteriormente para nuestros objetivos.
+
+Para ello, se utiliza la palabra clave return, que suele colocarse al final de la función, ya que con dicha devolución terminamos la ejecución de la función (si existe código después, nunca será ejecutado).
+
+Veamos un ejemplo con una operación muy sencilla, para verlo claramente:
+
+```javascript
+// Declaración
+function sumar(a, b) {
+  return a + b; // Devolvemos la suma de a y b al exterior de la función
+  console.log("Ya he realizado la suma."); // Este código nunca se ejecutará
+}
+
+// Ejecución
+var resultado = sumar(5, 5); // Se guarda 10 en la variable resultado
+```
+
+Como podemos ver, esto nos permite crear funciones más modulares y reutilizables que podremos utilizar en multitud de casos, ya que la información se puede enviar al exterior de la función y utilizarla junto a otras funciones o para otros objetivos.
+
+
 ## Estructuras de control
 
 Cuando escribimos código Javascript, por defecto, el navegador leerá el script de forma secuencial, es decir, una línea detrás de otra, desde arriba hacia abajo. Por lo tanto, una acción que realicemos en la línea 5 nunca ocurrirá antes que una que aparece en la línea 3. Ya veremos que más adelante esto se complica, pero en principio partimos de esa base.

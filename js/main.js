@@ -90,7 +90,7 @@ console.log("Submarino".substring(3, 6)); // 'mar'    (desde el 3, hasta el 6)
 console.log(" **** Metodo .padStart(len, str) o padEnd(len, str) - Rellenar con texto ****");
 console.log("5".padStart(6, "0")); // '000005'
 console.log("A".padEnd(5, "·")); // 'A····'
-
+console.log("*************************************************************************************************** ");
 // ? Number
 
 // Literales
@@ -139,3 +139,121 @@ console.log(" **** Metodo .isNaN() - Comprueba si no es un número. ****");
 // ¿No es un número?
 console.log(Number.isNaN(NaN)); // true
 console.log(Number.isNaN(5)); // false, es un número
+console.log("*************************************************************************************************** ");
+// ? Funciones
+
+console.log(" **** function(){} ****");
+// * Desclaración de la funcion
+function estoEsUnaFuncion() {
+    console.log(`Primera Funcion`);
+} // true
+// * Invocar  la función
+estoEsUnaFuncion();
+
+console.log(" **** function(){ return} ****");
+
+function funcionQueDevuelveValor() {
+    console.log(`Primera Funcion`);
+    return `Valor retornado`;
+} // true
+// * Llamar la función
+let resultadoFuncion = funcionQueDevuelveValor();
+console.log(resultadoFuncion);
+
+console.log(" **** function(parametros){ return} ****");
+
+function funcionConParametros(num_1, num_2) {
+    let resultadoSuma = num_1 + num_2;
+    return resultadoSuma;
+}
+
+console.log(funcionConParametros(5, 6));
+
+console.log(" **** function(parametros){ return} - con parametros por defecto para evitar el undifined ****");
+
+function funcionConParametrosPorDefecto(name = `Desconocido`, age = 0) {
+    let saludar = `Hola! mi nombres es ${name} y tengo ${age}.`
+    return saludar;
+}
+
+console.log(funcionConParametrosPorDefecto());
+
+console.log(" **** Funcion Desclarada ****");
+funcionDeclarada();
+
+function funcionDeclarada() {
+    let mensaje = `Esto es una funcion declarada despues de invocarla.`;
+
+    return console.log(mensaje);
+}
+
+console.log(" **** Funcion Expresada o Anonima ****");
+const funcionExpresada = function() {
+    let mensaje = `Esto es una funcion expresada. No se puede declarar despues de invocarla`;
+
+    return console.log(mensaje);
+};
+
+funcionExpresada();
+
+console.log(" *** Ejemplo funcion *** ");
+// Declaración de la función tablaDelUno()
+function tablaDelUno() {
+    for (i = 0; i <= 10; i++) console.log("1 x", i, "=", 1 * i);
+}
+
+// Bucle que ejecuta 3 veces la función tablaDelUno()
+for (i = 0; i < 3; i++) tablaDelUno();
+
+console.log(" *** Ejemplo funcion con parametros *** ");
+
+// Declaración
+function tablaDelUno(hasta) {
+    for (i = 0; i <= hasta; i++) console.log("1 x", i, "=", 1 * i);
+};
+// Ejecución
+tablaDelUno(10);
+tablaDelUno(5);
+
+console.log(" *** Ejemplo funcion con parametros multiples *** ");
+// Declaración
+function tablaMultiplicar(tabla, hasta) {
+    for (i = 0; i <= hasta; i++) console.log(tabla, "x", i, "=", tabla * i);
+};
+// Ejecución
+tablaMultiplicar(1, 10); // Tabla del 1
+tablaMultiplicar(5, 10); // Tabla del 5
+console.log("*************************************************************************************************** ");
+// ? Arreglos
+console.log(" **** [] - Declaración de arreglo **** ");
+
+const arr = []; // Arreglo vacio
+const arr1 = [1, true, "hola", [1, 2, 3, 5]];
+console.log(arr);
+console.log(arr1);
+console.log(" **** [].legth - Devuelve cantidad de elementos del arreglo **** ");
+console.log(arr1.length);
+console.log(" **** [posicion] - las posicion siempre comienza en 0 **** ");
+console.log(arr1[2]);
+console.log(" **** [posicion][posicion del arreglo interno] **** ");
+console.log([arr1[3][1]]);
+console.log(" **** variable = Array.of() - otra forma de cvrear arreglo **** ");
+const arr2 = Array.of(1, 2, 3);
+console.log(arr2);
+console.log(" ****  varible = Array(cantidad de posiciones).fill() - propiedad que permite llenar un array por defecto **** ");
+const arr3 = Array(100).fill(false);
+console.log(arr3);
+console.log(" **** .push() - Agrega un nuevo elemento al objeto al final **** ");
+const colores = ["Rojo", "Amarrillo", "Azul"];
+console.log(`sin .push - `, colores);
+colores.push("Verde");
+console.log(`con .push - `, colores);
+console.log(" **** .pop() - Elimina el ultimo elemento al array **** ");
+colores.pop();
+console.log(`.pop`, colores);
+console.log(" **** .forEach - recorre el arreglo y lo llena.**** ");
+// e - elemento
+// i - index o indice
+colores.forEach(function(e, i) {
+    console.log(`<li class="${i}"> ${e} </li>`);
+});
