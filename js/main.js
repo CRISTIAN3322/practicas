@@ -1,5 +1,5 @@
 // ? String : Cadenas de texto - Metodos y Propiedades
-
+console.log(" ************************************ String ************************************ ");
 // ! Propiedades String
 // TODO: String.lenght --> Devuelve el número de carácteres de la variable de tipo string en cuestión.
 console.log(" **** Metodo .lenght **** ");
@@ -90,7 +90,7 @@ console.log("Submarino".substring(3, 6)); // 'mar'    (desde el 3, hasta el 6)
 console.log(" **** Metodo .padStart(len, str) o padEnd(len, str) - Rellenar con texto ****");
 console.log("5".padStart(6, "0")); // '000005'
 console.log("A".padEnd(5, "·")); // 'A····'
-console.log("*************************************************************************************************** ");
+console.log(" ************************************ Number ************************************ ");
 // ? Number
 
 // Literales
@@ -139,7 +139,7 @@ console.log(" **** Metodo .isNaN() - Comprueba si no es un número. ****");
 // ¿No es un número?
 console.log(Number.isNaN(NaN)); // true
 console.log(Number.isNaN(5)); // false, es un número
-console.log("*************************************************************************************************** ");
+console.log(" ************************************ Funciones ************************************ ");
 // ? Funciones
 
 console.log(" **** function(){} ****");
@@ -200,10 +200,10 @@ console.log(" *** Ejemplo funcion *** ");
 // Declaración de la función tablaDelUno()
 function tablaDelUno() {
     for (i = 0; i <= 10; i++) console.log("1 x", i, "=", 1 * i);
-}
-
+};
 // Bucle que ejecuta 3 veces la función tablaDelUno()
-for (i = 0; i < 3; i++) tablaDelUno();
+//for (i = 0; i < 3; i++) 
+tablaDelUno();
 
 console.log(" *** Ejemplo funcion con parametros *** ");
 
@@ -223,37 +223,3 @@ function tablaMultiplicar(tabla, hasta) {
 // Ejecución
 tablaMultiplicar(1, 10); // Tabla del 1
 tablaMultiplicar(5, 10); // Tabla del 5
-console.log("*************************************************************************************************** ");
-// ? Arreglos
-console.log(" **** [] - Declaración de arreglo **** ");
-
-const arr = []; // Arreglo vacio
-const arr1 = [1, true, "hola", [1, 2, 3, 5]];
-console.log(arr);
-console.log(arr1);
-console.log(" **** [].legth - Devuelve cantidad de elementos del arreglo **** ");
-console.log(arr1.length);
-console.log(" **** [posicion] - las posicion siempre comienza en 0 **** ");
-console.log(arr1[2]);
-console.log(" **** [posicion][posicion del arreglo interno] **** ");
-console.log([arr1[3][1]]);
-console.log(" **** variable = Array.of() - otra forma de cvrear arreglo **** ");
-const arr2 = Array.of(1, 2, 3);
-console.log(arr2);
-console.log(" ****  varible = Array(cantidad de posiciones).fill() - propiedad que permite llenar un array por defecto **** ");
-const arr3 = Array(100).fill(false);
-console.log(arr3);
-console.log(" **** .push() - Agrega un nuevo elemento al objeto al final **** ");
-const colores = ["Rojo", "Amarrillo", "Azul"];
-console.log(`sin .push - `, colores);
-colores.push("Verde");
-console.log(`con .push - `, colores);
-console.log(" **** .pop() - Elimina el ultimo elemento al array **** ");
-colores.pop();
-console.log(`.pop`, colores);
-console.log(" **** .forEach - recorre el arreglo y lo llena.**** ");
-// e - elemento
-// i - index o indice
-colores.forEach(function(e, i) {
-    console.log(`<li class="${i}"> ${e} </li>`);
-});
