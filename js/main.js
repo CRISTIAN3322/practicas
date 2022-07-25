@@ -223,3 +223,4 @@ function tablaMultiplicar(tabla, hasta) {
 // Ejecución
 tablaMultiplicar(1, 10); // Tabla del 1
 tablaMultiplicar(5, 10); // Tabla del 5
+

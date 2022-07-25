@@ -62,3 +62,72 @@ console.log(" **** Object.values(objeto) - crea un arreglo con los valores del o
 console.log(Object.values(datos1));
 console.log(" **** objeto.hasOwnProperty(propiedad) - devuelve true o false si objeto tiene o no la propiedad **** ");
 console.log(datos1.hasOwnProperty("nombre"));
+
+console.log(" ************************************ Estructura de control ************************************ ");
+console.log(" ========== if - else ========== ");
+let edad = 25;
+if(edad >= 17){
+    console.log(`Eres mayor de edad`);
+}else{
+    console.log(`Eres menor de edad`);
+}
+if(edad <= 17){
+    console.log(`Eres mayor de edad`);
+}else{
+    console.log(`Eres menor de edad`);
+}
+if(edad > 17){
+    console.log(`Eres mayor de edad`);
+}else{
+    console.log(`Eres menor de edad`);
+}
+if(edad < 17){
+    console.log(`Eres mayor de edad`);
+}else{
+    console.log(`Eres menor de edad`);
+}
+console.log(" ========== if anidados ========== ");
+let hora = 14;
+if(hora >= 0 && hora <= 5){
+    console.log(`Déjame dormir`);
+}else if(hora >= 6 && hora <= 11){
+    console.log(`Buenos dias`);
+}else if(hora >= 12 && hora <= 18){
+    console.log(`Buenos tardes`);
+}else{
+    console.log(`Buenos noches`);
+}
+console.log(" ========== operador ternario - (condicion) ? verdadero:falso Nota : solo ejecuta una linea de codigo ========== ");
+let eresMayor = (edad >= 18) 
+    ? `Eres mayor` 
+    : `Eres menor`;
+console.log(eresMayor);
+console.log(" ************************************ switch - case ******************** ");
+let dia = 8;
+switch(dia){
+    case 0:
+        console.log(`domingo`);
+        break;
+    case 1:
+        console.log(`lunes`);
+        break;
+    case 2:
+        console.log(`martes`);
+        break;
+    case 3:
+        console.log(`miercoles`);
+        break;
+    case 4:
+        console.log(`jueves`);
+        break;
+    case 5:
+        console.log(`viernes`);
+        break;
+    case 6:
+        console.log(`sabado`);
+        break;
+    default:
+        console.log(`No es un dia`);
+        break;    
+}
+console.log(" ************************************ ciclos ************************************ ");
