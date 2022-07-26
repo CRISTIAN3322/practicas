@@ -131,3 +131,51 @@ switch(dia){
         break;    
 }
 console.log(" ************************************ ciclos ************************************ ");
+console.log(" ========== while ========== ");
+let contador = 0;
+while(contador < 10){
+    console.log(`while ${contador}`);
+    contador++;
+}
+console.log(" ========== do while ========== ");
+do{
+    console.log(`do while ${contador}`);
+    contador++;
+}while(contador < 10);
+console.log(" ========== for ========== ");
+/**
+ * for(inicializacion; condicion; decremento o incremento)
+ * {
+ * setencia que ejecuta for
+ * }
+ * */ 
+for(let i = 0; i < 10; i++){
+    console.log(i);
+}
+let numeros = [10,20,30,50,90];
+for(let i = 0; i<numeros.length;i++){
+    console.log(numeros[i]);
+}
+console.log(" ========== for in ========== ");
+/** 
+ * Recorre todas las propiedades de un arreglo.
+*/
+const cris = {
+    nombre: "cristian",
+    apellido: "poveda",
+    edad: 34
+}
+for (const propiedad in cris) {
+    console.log(`llave: ${propiedad}, valor: ${cris[propiedad]}`);    
+}
+console.log(" ========== for of ========== ");
+/** 
+ * recorre todos los objetos que sean iterables
+ */
+for (const iteracion of numeros) {
+    console.log(iteracion);    
+}
+let palabra = `hola mundo`;
+for (const i of palabra) {
+    console.log(i);    
+}
